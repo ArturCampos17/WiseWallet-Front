@@ -1,0 +1,93 @@
+/* Estilos gerais do formulário */
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos dos inputs */
+input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Estilo da mensagem de erro */
+.error-message {
+  color: #ffffff;
+  background-color: #e74c3c;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 18px;
+}
+
+/* Estilo do botão */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #357abd;
+}
+
+button[type="submit"]:active {
+  background-color: #2a5f8a;
+}
+
+/* Estilo para inputs inválidos */
+input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+}
+
+/* Layout responsivo */
+@media (max-width: 480px) {
+  form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  input {
+    font-size: 14px;
+  }
+}
+
+/* Opcional: Estilo para o container principal */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}

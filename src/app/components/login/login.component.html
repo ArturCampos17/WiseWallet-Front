@@ -1,0 +1,23 @@
+<form (submit)="onLogin()">
+  <input
+    type="text"
+    [(ngModel)]="credentials.username"
+    name="username"
+    placeholder="Usuário"
+    required
+  >
+
+  <input
+    type="password"
+    [(ngModel)]="credentials.password"
+    name="password"
+    placeholder="Senha"
+    required
+  >
+
+  <div *ngIf="loginError" class="error-message">
+    Credenciais inválidas! Tente admin/1234
+  </div>
+
+  <button type="submit">Login</button>
+</form>

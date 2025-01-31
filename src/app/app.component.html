@@ -1,0 +1,4 @@
+<!-- app.component.html -->
+<app-sidebar *ngIf="authService.isAuthenticated$ | async"></app-sidebar>
+<router-outlet></router-outlet>
+
