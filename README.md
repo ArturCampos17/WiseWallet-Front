@@ -77,9 +77,6 @@ WiseWallet é um aplicativo web desenvolvido em Angular para controle de gastos 
    http://localhost:4200
    ```
 
-## 📜 Licença
-Este projeto está sob a licença MIT. Sinta-se à vontade para utilizá-lo e contribuí-lo!
-
 ## 📬 Contato
 Para mais informações, entre em contato pelo GitHub: [ArturCampos17](https://github.com/ArturCampos17) ou pelo email arturp282@gmail.com
 
