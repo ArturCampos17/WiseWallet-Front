@@ -11,6 +11,7 @@
 
 /* Layout Base */
 .profile-container {
+  border: 1px solid #4169E1;
   max-width: 1000px;
   margin: 2rem auto;
   padding: 2rem;
@@ -19,6 +20,7 @@
   box-shadow: var(--shadow);
 }
 
+
 /* Seção do Avatar */
 .avatar-section {
   text-align: center;
@@ -26,20 +28,22 @@
 }
 
 .financial-avatar {
+
   width: 140px;
   height: 140px;
   margin: 0 auto 1rem;
   background: #3540dc;
-  border: 3px solid var(--primary-color);
+  border: 3px solid #2c3e50;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.5rem;
-  color: var(--primary-color);
+  color: #2c3e50;
 }
 
 .status-badge {
+  
   padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
@@ -50,15 +54,15 @@
 
 /* Seções de Conteúdo */
 .info-section {
-  background: #fff;
-  border: 1px solid var(--border-color);
+  background: #f8f8f8;
+  border: 1px solid #4169E1;
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 .info-section h2 {
-  color: var(--primary-color);
+  color: #3540dc;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
@@ -69,6 +73,7 @@
 .personal-data-grid,
 .contact-grid,
 .address-grid {
+  
   display: grid;
   gap: 1.5rem;
 }
@@ -79,20 +84,23 @@
 
 /* Elementos de Dados */
 .data-item {
+  
   display: grid;
   gap: 0.5rem;
 }
 
 .contact-method {
+  
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: var(--background-light);
+  background: #f8f9fa;
   border-radius: 8px;
 }
 
 .address-card {
+  border: 1px solid #4169E1;
   background: var(--background-light);
   border: 1px solid var(--border-color);
   border-radius: 10px;
@@ -100,12 +108,14 @@
 }
 
 .address-field-group {
+  
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
 .address-line {
+  
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -114,7 +124,7 @@
 /* Campos Editáveis */
 .editable-field {
   padding: 8px 12px;
-  border: 1px solid var(--border-color);
+  border: 1px solid #4169E1;
   border-radius: 4px;
   width: 100%;
   transition: all 0.3s ease;
@@ -132,10 +142,6 @@
   color: var(--secondary-color);
 }
 
-.masked-data {
-  color: #0865e7;
-  font-family: 'Courier New', monospace;
-}
 
 /* Botões */
 .profile-actions {
@@ -158,14 +164,18 @@
   gap: 0.5rem;
 }
 
-.btn-primary { background: var(--primary-color); color: rgb(34, 177, 122); }
-.btn-success { background: var(--success-color); color: rgb(0, 0, 0); }
-.btn-cancel { background: var(--secondary-color); color: rgb(231, 21, 21); }
+.btn-primary {background: #4169E1; color: #ffffff; }
+.btn-success { background: #4169E1; color: #ffffff; }
+.btn-cancel { background:  rgb(231, 21, 21); color: rgb(255, 255, 255); }
 
 .btn-primary:hover,
 .btn-success:hover,
 .btn-cancel:hover {
   filter: brightness(0.9);
+}
+.edit-actions {
+  display: flex;
+  gap: 10px; /* Espaço entre os botões */
 }
 
 /* Responsividade */

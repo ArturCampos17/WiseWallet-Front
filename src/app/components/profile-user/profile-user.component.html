@@ -176,19 +176,19 @@
                      maxlength="2">
             </div>
 
-            <div *ngIf="!isEditing">
+            <!-- <div *ngIf="!isEditing">
               <input class="editable-field readonly-field masked-data"
                      [value]="'CEP: ' + (user.billingAddress.zipCode | cep)"
                      disabled>
-            </div>
+            </div> -->
 
-            <div *ngIf="isEditing">
+            <!-- <div *ngIf="isEditing">
               <input class="editable-field"
                      [(ngModel)]="user.billingAddress.zipCode"
                      placeholder="00000-000"
                      (keypress)="validateCEP($event)"
                      maxlength="9">
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -221,7 +221,7 @@
       <button *ngIf="!isEditing" class="btn-primary" (click)="toggleEdit()">
         <i class="fas fa-edit"></i> Editar Perfil
       </button>
-
+      
       <div *ngIf="isEditing" class="edit-actions">
         <button class="btn-success" (click)="saveChanges()">
           <i class="fas fa-check"></i> Salvar Alterações

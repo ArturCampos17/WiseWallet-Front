@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterTransitionComponent } from './register-transition.component';
+import { RegisterTransactionComponent } from './register-transaction.component';
 
 describe('RegisterTransitionComponent', () => {
-  let component: RegisterTransitionComponent;
-  let fixture: ComponentFixture<RegisterTransitionComponent>;
+  let component: RegisterTransactionComponent;
+  let fixture: ComponentFixture<RegisterTransactionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterTransitionComponent ]
+      declarations: [ RegisterTransactionComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RegisterTransitionComponent);
+    fixture = TestBed.createComponent(RegisterTransactionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

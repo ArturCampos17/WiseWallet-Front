@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { RegisterTransitionComponent } from './components/register-transition/register-transition.component';
+import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
 import { ListTransitionComponent } from './components/list-transition/list-transition.component';
 import { CategoryManagementComponent } from './components/category-management/category-management.component';
 import { StatisticsReportComponent } from './components/statistics-report/statistics-report.component';
@@ -24,7 +25,7 @@ import { CepPipe } from './components/shared/pipes/cep.pipe';
     AboutComponent,
     ServicesComponent,
     ContactComponent,
-    RegisterTransitionComponent,
+    RegisterTransactionComponent,
     ListTransitionComponent,
     CategoryManagementComponent,
     StatisticsReportComponent,
@@ -36,7 +37,8 @@ import { CepPipe } from './components/shared/pipes/cep.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
