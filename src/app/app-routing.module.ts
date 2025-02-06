@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 
-import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
+//import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
 import { CategoryManagementComponent } from './components/category-management/category-management.component'
@@ -26,8 +26,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'register-transition', component: RegisterTransactionComponent, canActivate: [AuthGuard] },
-  { path: 'list-transition', component: TransactionListComponent, canActivate: [AuthGuard] },
+  //{ path: 'register-transaction', component: RegisterTransactionComponent, canActivate: [AuthGuard] },
+  { path: 'transaction-list', component: TransactionListComponent , canActivate: [AuthGuard] },
+
   { path: 'category', component: CategoryManagementComponent, canActivate: [AuthGuard] },
   { path: 'report', component: StatisticsReportComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuard] },
