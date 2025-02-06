@@ -20,7 +20,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CepPipe } from './components/shared/pipes/cep.pipe';
 
 
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule  } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule,NbAccordionModule  } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localePt);
@@ -55,7 +55,8 @@ registerLocaleData(localePt);
     NbListModule,            // 🔹 Para usar <nb-list> e <nb-list-item>
     NbInputModule,           // ✅ Para usar <nb-input> e <nb-input-group>
     NbButtonModule,          // ✅ Para usar <nb-button>
-    NbIconModule
+    NbIconModule,
+    NbAccordionModule 
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]

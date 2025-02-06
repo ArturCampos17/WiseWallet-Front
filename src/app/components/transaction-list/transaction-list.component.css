@@ -1,3 +1,85 @@
+/* ====== CONTAINER PRINCIPAL PARA ALINHAMENTO ====== */
+.main-container {
+  max-width: 1200px;  /* Define a largura principal */
+  margin: 0 auto;  /* Centraliza */
+}
+
+/* ====== BARRA DE FILTROS ====== */
+.filter-bar {
+  width: 100%;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(204, 21, 21, 0.1);
+  margin-bottom: 20px;
+}
+
+/* ====== CONTAINER DOS FILTROS (Inputs e Selects) ====== */
+.filter-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;  /* Espaçamento entre os filtros */
+  margin-top: 12px;
+}
+
+/* ====== ESTILO DOS FILTROS ====== */
+.filter-bar input,
+.filter-bar select {
+  flex: 1 1 220px;  /* Mantém alinhado e evita colapsar */
+  min-width: 220px;
+  padding: 10px;  /* Mais espaçamento interno */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+/* Efeito ao focar no input */
+.filter-bar input:focus,
+.filter-bar select:focus {
+  border-color: #2196F3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* ====== ACCORDION (Filtros) ====== */
+nb-accordion {
+  width: 100%;
+}
+
+nb-accordion-item {
+  background: transparent;
+  border: none;
+}
+
+/* Ajuste no cabeçalho do accordion */
+::ng-deep nb-accordion-item-header {
+  padding: 14px;
+  background-color: #e0e0e0 !important;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+/* Esconde a seta padrão do Nebular */
+::ng-deep nb-accordion-item-header button::after {
+  display: none !important;
+}
+
+/* Ícone de seta personalizado e menor */
+::ng-deep nb-icon.expansion-indicator {
+  width: 16px !important;
+  height: 16px !important;
+  font-size: 14px !important;
+}
+
+/* ====== TABELA ====== */
+.transactions-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .transactions-table {
   width: 100%;
   border-collapse: collapse;
@@ -15,6 +97,12 @@
   font-weight: bold;
 }
 
+/* Ajuste colunas */
+.transactions-table td {
+  white-space: nowrap;
+}
+
+/* ====== ESTILOS PARA VALORES POSITIVOS E NEGATIVOS ====== */
 .amount.positive {
   color: green;
   font-weight: bold;
@@ -24,35 +112,29 @@
   color: red;
   font-weight: bold;
 }
-.filter-bar {
-  padding: 20px;
-  background: #f5f5f5;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 10px;
-}
 
-.filter-bar input, .filter-bar select {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 768px) {
+  .main-container {
+    width: 95%;
+  }
 
-.transaction-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  .filter-bar {
+    flex-direction: column;
+  }
 
-.transaction-item {
-  padding: 15px;
-  border: 1px solid #eee;
-  border-radius: 4px;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
+  .filter-input-container {
+    flex-direction: column;
+    gap: 10px;  /* Reduz o espaçamento entre filtros em telas menores */
+  }
 
-.transaction-item div {
-  flex: 1;
+  .filter-bar input,
+  .filter-bar select {
+    flex-basis: 100%;
+    min-width: 100%;
+  }
+
+  ::ng-deep nb-accordion-item-header {
+    font-size: 14px;
+  }
 }
