@@ -1,0 +1,55 @@
+<div class="filter-bar">
+  <input type="text" placeholder="Filtrar por descrição" [(ngModel)]="filterDescription">
+
+  <select [(ngModel)]="filterCategory">
+    <option value="">Todas categorias</option>
+    <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+  </select>
+
+  <select [(ngModel)]="filterSituation">
+    <option value="">Todas situações</option>
+    <option *ngFor="let sit of situations" [value]="sit">{{sit}}</option>
+  </select>
+  <input type="date" [(ngModel)]="filterDate">
+</div>
+
+<nb-card size="small">
+  <nb-card-header>Lista de Transações</nb-card-header>
+
+  <nb-card-body>
+    <table class="transactions-table">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Favorecido</th>
+          <th>Categoria</th>
+          <th>Tipo</th>
+          <th>Situação</th>
+          <th>Data</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of filteredTransactions">
+          <td>{{ transaction.description }}</td>
+          <td>{{ transaction.favored }}</td>
+          <td>{{ transaction.category }}</td>
+          <td>{{ transaction.tipoPagamento }}</td>
+          <td>{{ transaction.situation }}</td>
+          <td>{{ transaction.date | date:'dd/MM/yyyy' }}</td>
+          <td
+          class="amount"
+          [ngClass]="{ 'positive': transaction.amount > 0, 'negative': transaction.amount < 0 }">
+          {{ transaction.amount | currency:'BRL' }}
+        </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6"><strong>Total</strong></td>
+          <td><strong>R$ {{ getTotalAmount() | number:'1.2-2' }}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </nb-card-body>
+</nb-card>

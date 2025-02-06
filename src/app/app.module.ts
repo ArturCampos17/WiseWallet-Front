@@ -1,4 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,8 +9,13 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
+<<<<<<< HEAD
 import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
 import { ListTransitionComponent } from './components/list-transition/list-transition.component';
+=======
+import { RegisterTransitionComponent } from './components/register-transition/register-transition.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+>>>>>>> b98f06d (Modulo transactions list)
 import { CategoryManagementComponent } from './components/category-management/category-management.component';
 import { StatisticsReportComponent } from './components/statistics-report/statistics-report.component';
 import { ProfileUserComponent } from './components/profile-user/profile-user.component';
@@ -18,29 +25,53 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CepPipe } from './components/shared/pipes/cep.pipe';
 
 
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule  } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+registerLocaleData(localePt);
+
 @NgModule({
+
   declarations: [
+
     AppComponent,
     HomeComponent,
     AboutComponent,
     ServicesComponent,
     ContactComponent,
+<<<<<<< HEAD
     RegisterTransactionComponent,
     ListTransitionComponent,
+=======
+    RegisterTransitionComponent,
+    TransactionListComponent,
+>>>>>>> b98f06d (Modulo transactions list)
     CategoryManagementComponent,
     StatisticsReportComponent,
     ProfileUserComponent,
     LoginComponent,
     SidebarComponent,
     CepPipe
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+<<<<<<< HEAD
     ReactiveFormsModule 
+=======
+    BrowserAnimationsModule, // 🔹 Necessário para animações do Nebular
+    NbThemeModule.forRoot({ name: 'default' }), // 🔹 Inicializa o tema do Nebular
+    NbLayoutModule,          // 🔹 Layout do Nebular
+    NbCardModule,            // 🔹 Para usar <nb-card>
+    NbListModule,            // 🔹 Para usar <nb-list> e <nb-list-item>
+    NbInputModule,           // ✅ Para usar <nb-input> e <nb-input-group>
+    NbButtonModule,          // ✅ Para usar <nb-button>
+    NbIconModule
+>>>>>>> b98f06d (Modulo transactions list)
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
