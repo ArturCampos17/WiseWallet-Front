@@ -37,7 +37,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   getTotalAmount(): number{
-    return this.transactions.reduce((total,transactions) => total + transactions.amount,0);
+    return this.filteredTransactions.reduce((total,transactions) => total + transactions.amount,0);
   }
 
   constructor() { }
