@@ -22,6 +22,8 @@ import { CepPipe } from './components/shared/pipes/cep.pipe';
 
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule,NbAccordionModule  } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 
 registerLocaleData(localePt);
 
@@ -41,7 +43,9 @@ registerLocaleData(localePt);
     ProfileUserComponent,
     LoginComponent,
     SidebarComponent,
-    CepPipe
+    CepPipe,
+    AuthLayoutComponent,
+    MainLayoutComponent
 
   ],
   imports: [
