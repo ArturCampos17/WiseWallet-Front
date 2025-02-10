@@ -1,36 +1,64 @@
-<div class="register-transaction">
-  <h2>Register Transaction</h2>
-  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-
+<div class="main-container">
+  <h1 class="title">Registrar Transação</h1>
+  <form class="transaction-form" [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <!-- Descrição -->
     <div class="form-group">
-      <label for="type">Type</label>
-      <select id="type" formControlName="type">
-        <option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
-      </select>
+      <label for="description">Descrição:</label>
+      <input type="text" id="description" formControlName="description" placeholder="Digite a descrição da transação" />
     </div>
 
+    <!-- Destinatário -->
     <div class="form-group">
-      <label for="amount">Amount</label>
-      <input id="amount" type="number" formControlName="amount" placeholder="$ 0.00" step="0.01" />
+      <label for="receiver">Destinatário:</label>
+      <input type="text" id="receiver" formControlName="receiver" placeholder="Digite o nome do destinatário" />
     </div>
 
+    <!-- Categoria -->
     <div class="form-group">
-      <label for="date">Date</label>
-      <input id="date" type="date" formControlName="date" />
-    </div>
-
-    <div class="form-group">
-      <label for="category">Category</label>
+      <label for="category">Categoria:</label>
       <select id="category" formControlName="category">
-        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        <option value="" disabled selected>Selecione uma categoria</option>
+        <option value="alimentacao">Alimentação</option>
+        <option value="transporte">Transporte</option>
+        <option value="lazer">Lazer</option>
+        <option value="outros">Outros</option>
       </select>
     </div>
 
+    <!-- Tipo -->
     <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" formControlName="description" placeholder="Optional"></textarea>
+      <label for="type">Tipo:</label>
+      <select id="type" formControlName="type">
+        <option value="" disabled selected>Selecione o tipo</option>
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
+      </select>
     </div>
 
-    <button type="submit" [disabled]="transactionForm.invalid">Register</button>
+    <!-- Situação -->
+    <div class="form-group">
+      <label for="situation">Situação:</label>
+      <select id="situation" formControlName="situation">
+        <option value="" disabled selected>Selecione a situação</option>
+        <option value="pendente">Pendente</option>
+        <option value="concluida">Concluída</option>
+        <option value="cancelada">Cancelada</option>
+      </select>
+    </div>
+
+    <!-- Data -->
+    <div class="form-group">
+      <label for="date">Data:</label>
+      <input type="date" id="date" formControlName="date" />
+    </div>
+
+    <!-- Valor -->
+    <div class="form-group">
+      <label for="value">Valor:</label>
+      <input type="number" id="value" formControlName="value" step="0.01" placeholder="Digite o valor" />
+    </div>
+
+    <!-- Botão de Envio -->
+    <button type="submit" class="submit-button" [disabled]="transactionForm.invalid">Registrar Transação</button>
   </form>
 </div>

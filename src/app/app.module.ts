@@ -13,7 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
-//import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
+import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { CategoryManagementComponent } from './components/category-management/category-management.component';
 import { StatisticsReportComponent } from './components/statistics-report/statistics-report.component';
@@ -37,7 +37,7 @@ registerLocaleData(localePt);
     AboutComponent,
     ServicesComponent,
     ContactComponent,
-    //RegisterTransactionComponent,
+    RegisterTransactionComponent,
     TransactionListComponent,
     CategoryManagementComponent,
     StatisticsReportComponent,

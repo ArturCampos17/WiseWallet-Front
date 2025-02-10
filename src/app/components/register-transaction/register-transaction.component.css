@@ -1,80 +1,85 @@
 /* Layout Base */
-.register-transaction {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #4169E1;
-  border-radius: 8px ;
-  background: #f8f9fa;
+.main-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-h2 {
+.title {
   text-align: center;
-  margin-bottom: 20px;
-  color: #4169E1;
+  color: #3540dc;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
 }
 
-/* Formulário */
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .form-group {
-  
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+.form-group label {
+  font-weight: 600;
   color: #2c3e50;
-  
 }
 
-input, select, textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #4169E1;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #2c3e50;
-  background: #ffffff;
+.form-group input,
+.form-group select {
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
-input:focus, select:focus, textarea:focus {
+.form-group input:focus,
+.form-group select:focus {
   border-color: #4169E1;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(65, 105, 225, 0.1);
 }
 
-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* Botão de Envio */
-button {
-  width: 100%;
-  padding: 10px;
+.submit-button {
+  padding: 0.8rem;
   background: #4169E1;
   color: #ffffff;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 1rem;
   transition: filter 0.3s ease;
 }
 
-button:hover {
+.submit-button:hover {
   filter: brightness(0.9);
 }
 
-button:disabled {
-  background: #6c757d;
+.submit-button:disabled {
+  background: #ccc;
   cursor: not-allowed;
 }
 
-/* Mensagens de Erro (Opcional) */
-.error-message {
-  color: #dc3545;
-  font-size: 12px;
-  margin-top: 5px;
+/* Responsividade */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 0.9rem;
+  }
 }
