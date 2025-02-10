@@ -1,7 +1,8 @@
 /* ====== CONTAINER PRINCIPAL PARA ALINHAMENTO ====== */
 .main-container {
-  max-width: 1200px;  /* Define a largura principal */
-  margin: 0 auto;  /* Centraliza */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 /* ====== BARRA DE FILTROS ====== */
@@ -18,16 +19,16 @@
 .filter-input-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;  /* Espaçamento entre os filtros */
+  gap: 10px;
   margin-top: 12px;
 }
 
 /* ====== ESTILO DOS FILTROS ====== */
 .filter-bar input,
 .filter-bar select {
-  flex: 1 1 220px;  /* Mantém alinhado e evita colapsar */
+  flex: 1 1 220px;
   min-width: 220px;
-  padding: 10px;  /* Mais espaçamento interno */
+  padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 14px;
@@ -47,7 +48,6 @@
 nb-accordion {
   width: 100%;
 }
-
 nb-accordion-item {
   background: transparent;
   border: none;
@@ -83,6 +83,7 @@ nb-accordion-item {
 .transactions-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 }
 
 .transactions-table th,
@@ -125,7 +126,7 @@ nb-accordion-item {
 
   .filter-input-container {
     flex-direction: column;
-    gap: 10px;  /* Reduz o espaçamento entre filtros em telas menores */
+    gap: 10px;
   }
 
   .filter-bar input,
@@ -136,5 +137,28 @@ nb-accordion-item {
 
   ::ng-deep nb-accordion-item-header {
     font-size: 14px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .filter-bar {
+    padding: 15px;
+  }
+
+  .filter-bar input,
+  .filter-bar select {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .transactions-table th,
+  .transactions-table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .transactions-table {
+    min-width: 400px;
   }
 }

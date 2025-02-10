@@ -14,6 +14,7 @@ import { AuthGuard } from './components/guards/auth.guard';
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+
 import { AuthService } from './components/services/auth.service';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
@@ -56,3 +57,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+
