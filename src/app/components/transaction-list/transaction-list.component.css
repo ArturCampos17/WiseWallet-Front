@@ -159,6 +159,6 @@ nb-accordion-item {
   }
 
   .transactions-table {
-    min-width: 400px;
+    min-width: 400px; 
   }
 }
