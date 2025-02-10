@@ -13,14 +13,11 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './components/guards/auth.guard';
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
-
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { AuthService } from './components/services/auth.service';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
-
-
-
 
 
 const routes: Routes = [
@@ -33,8 +30,13 @@ const routes: Routes = [
     path: 'login',
     component: AuthLayoutComponent,  // Usando layout sem sidebar para login
     children: [
-      { path: '', component: LoginComponent }
+      { path: '', component: LoginComponent },
     ]
+  },
+  {
+    path: 'register-user',
+    component: AuthLayoutComponent,
+    children: [ { path: '', component: RegisterUserComponent } ]
   },
   {
     path: '',

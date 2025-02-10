@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.css ou styles.scss */
+:root {
+  --font-family-primary: 'Raleway', sans-serif;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-primary);
+  font-size: 16px; /* Tamanho base */
+  line-height: 1.5; /* Espaçamento entre linhas */
+  color: var(--text-color); /* Use suas variáveis de cor */
+}
+
+/* Garantir que todos os elementos usem a mesma fonte */
+* {
+  font-family: inherit;
+}

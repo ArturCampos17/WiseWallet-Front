@@ -1,10 +1,14 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule,NbAccordionModule  } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
@@ -18,12 +22,9 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CepPipe } from './components/shared/pipes/cep.pipe';
-
-
-import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule,NbAccordionModule  } from '@nebular/theme';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 registerLocaleData(localePt);
 
@@ -45,10 +46,12 @@ registerLocaleData(localePt);
     SidebarComponent,
     CepPipe,
     AuthLayoutComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    RegisterUserComponent
 
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -60,7 +63,7 @@ registerLocaleData(localePt);
     NbInputModule,           // ✅ Para usar <nb-input> e <nb-input-group>
     NbButtonModule,          // ✅ Para usar <nb-button>
     NbIconModule,
-    NbAccordionModule 
+    NbAccordionModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
