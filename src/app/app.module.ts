@@ -1,4 +1,5 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -54,6 +55,7 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule, // 🔹 Necessário para animações do Nebular
     NbThemeModule.forRoot({ name: 'default' }), // 🔹 Inicializa o tema do Nebular

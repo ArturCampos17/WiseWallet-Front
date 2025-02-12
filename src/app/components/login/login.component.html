@@ -1,23 +1,17 @@
 <form (submit)="onLogin()">
-  <input
-    type="text"
-    [(ngModel)]="credentials.username"
-    name="username"
-    placeholder="Usuário"
-    required
-  >
 
-  <input
-    type="password"
-    [(ngModel)]="credentials.password"
-    name="password"
-    placeholder="Senha"
-    required
-  >
-
-  <div *ngIf="loginError" class="error-message">
-    Credenciais inválidas! Tente admin/1234
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="credentials.email" name="email" required />
   </div>
+  <div>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" [(ngModel)]="credentials.password" name="password" required />
+  </div>
+
+  <!-- <div *ngIf="loginError" class="error-message">
+    Credenciais inválidas! Tente admin/1234
+  </div> -->
 
   <button type="submit">Login</button>
 <div>

@@ -1,8 +1,6 @@
-// app.component.ts
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './components/services/auth.service';
-import { Observable } from 'rxjs';
-import { NavigationStart, Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +10,15 @@ import { NavigationStart, Router } from '@angular/router';
 export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
 
-  constructor(public authService: AuthService, private router: Router) {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart && !this.authService.isAuthenticated$) {
-        this.router.navigate(['/login'], { replaceUrl: true });
-      }
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit() {
-    this.authService.isAuthenticated$.subscribe((authenticated) => {
+  ngOnInit(): void {
+    // Inscreve-se no Observable para atualizar o estado de autenticação
+    this.authService.isAuthenticated.subscribe((authenticated: boolean) => {
       this.isAuthenticated = authenticated;
     });
+
+    // Verifica o estado de autenticação ao iniciar a aplicação
+    this.authService.checkAuthStatus();
   }
 }

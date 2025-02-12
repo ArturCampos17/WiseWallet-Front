@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -6,15 +6,18 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent {
-  credentials = { username: '', password: '' };
-  loginError = false;
+  credentials = { email: '', password: '' };
 
   constructor(private authService: AuthService) {}
 
   onLogin() {
-    this.loginError = false;
+    console.log('Credenciais enviadas:', this.credentials);
+    if (!this.credentials.email || !this.credentials.password) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
     this.authService.login(this.credentials);
   }
 }

@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { UserService } from '../services/user.service'; 
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent {
-
   registrationForm: FormGroup;
+  message: string = '';
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -33,10 +34,24 @@ export class RegisterUserComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      console.log('Dados do formulário:', this.registrationForm.value);
-      alert('Cadastro realizado com sucesso!');
+      const userData = this.registrationForm.value;
+
+   
+      this.userService.registerUser(userData).subscribe({
+        next: (response) => {
+          this.message = 'Cadastro realizado com sucesso!';
+          this.errorMessage = '';
+          console.log('Resposta do backend:', response);
+        },
+        error: (err) => {
+          this.errorMessage = err.message || 'Erro ao cadastrar usuário.';
+          this.message = '';
+          console.error('Erro ao cadastrar usuário:', err);
+        }
+      });
     } else {
-      alert('Por favor, preencha todos os campos obrigatórios.');
+      this.errorMessage = 'Por favor, preencha todos os campos obrigatórios.';
+      this.message = '';
     }
   }
 }

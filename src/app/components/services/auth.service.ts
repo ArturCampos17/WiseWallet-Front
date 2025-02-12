@@ -1,76 +1,67 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-
-interface Credentials {
-  username: string;
-  password: string;
-}
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
+  constructor(private http: HttpClient, private router: Router) {}
 
-  private readonly AUTH_STORAGE_KEY = 'auth_token';
-  private readonly mockUser: Credentials = {
-    username: 'admin',
-    password: '1234'
-  };
-
-  constructor(private router: Router) {
-    this.initializeAuthState();
+  login(credentials: { email: string; password: string }) {
+    return this.http.post<{ message: string; authenticated: boolean }>(
+      'http://localhost:8080/api/auth/login',
+      credentials,
+      { withCredentials: true }
+    ).subscribe(
+      (response) => {
+        if (response.authenticated) {
+          this.setAuthenticated(true);
+          this.router.navigate(['/home']);
+        } else {
+          alert(response.message);
+        }
+      },
+      (error) => {
+        console.error('Erro ao fazer login:', error);
+        alert('Erro ao fazer login. Verifique suas credenciais.');
+      }
+    );
   }
 
-  login(credentials: Credentials): boolean {
-    const isValid = this.validateCredentials(credentials);
 
-    if (isValid) {
-      this.setAuthentication(true);
-      this.router.navigate(['/home']);
-    } else {
-      this.isAuthenticatedSubject.next(false);
+  logout() {
+    this.http.post('/api/logout', {}, { withCredentials: true }).subscribe(() => {
+      this.setAuthenticated(false);
+      this.router.navigate(['/login']);
+    });
+  }
+
+checkAuthStatus() {
+  this.http.get<{ authenticated: boolean }>('http://localhost:8080/api/auth/check-auth', { withCredentials: true }).subscribe(
+    (response) => {
+      this.setAuthenticated(response.authenticated);
+    },
+    (error) => {
+      console.error('Erro ao verificar estado de autenticação:', error);
+      this.setAuthenticated(false);
     }
-
-    return isValid;
+  );
+}
+  setAuthenticated(status: boolean) {
+    this.isAuthenticatedSubject.next(status);
   }
 
-  logout(): void {
-    this.clearAuthentication();
-    this.isAuthenticatedSubject.next(false);
-    this.router.navigate(['/login'], { replaceUrl: true });
-    window.history.replaceState(null, '', '/login');
-  }
-
-  private validateCredentials(credentials: Credentials): boolean {
-    return credentials.username === this.mockUser.username &&
-           credentials.password === this.mockUser.password;
-  }
-
-  private initializeAuthState(): void {
-    const token = localStorage.getItem(this.AUTH_STORAGE_KEY);
-    this.isAuthenticatedSubject.next(!!token);
-  }
-
-  private setAuthentication(isAuthenticated: boolean): void {
-    if (isAuthenticated) {
-      localStorage.setItem(this.AUTH_STORAGE_KEY, 'mock_jwt_token');
-    } else {
-      localStorage.removeItem(this.AUTH_STORAGE_KEY);
-    }
-    this.isAuthenticatedSubject.next(isAuthenticated);
-  }
-
-  private clearAuthentication(): void {
-    localStorage.removeItem(this.AUTH_STORAGE_KEY);
-    sessionStorage.clear();
-    this.isAuthenticatedSubject.next(false);
-  }
-
-  get currentAuthState(): boolean {
+  getIsAuthenticated(): boolean {
     return this.isAuthenticatedSubject.value;
+  }
+
+  getUser(): Observable<{ name: string; email: string }> {
+    return this.http.get<{ name: string; email: string }>('http://localhost:8080/api/auth/user', { withCredentials: true });
   }
 }

@@ -36,7 +36,7 @@ export class ProfileUserComponent implements OnInit {
     input.value = value;
   }
   saveChanges() {
-    // Aqui você fará a chamada para a API quando implementar o backend
+    
     this.isEditing = false;
     this.originalUserData = null;
   }
@@ -48,7 +48,7 @@ export class ProfileUserComponent implements OnInit {
 
   // Variável que será populada pelo backend posteriormente
   user: any = {
-    // Dados mockados - Remover quando implementar o backend
+   
     fullName: 'Artur Campos Periera',
     email: 'arturp282@gmail.com',
     phone: '(48) 9 9699-5811',
@@ -89,12 +89,11 @@ export class ProfileUserComponent implements OnInit {
   };
 
   constructor() {
-    // Aqui você injetará o serviço de API posteriormente
-    // Ex: private apiService: ApiService
+
   }
 
   ngOnInit(): void {
-    // Chamada que será feita para o backend
+
     /* this.apiService.getUserProfile().subscribe({
       next: (data) => this.user = data,
       error: (err) => console.error('Erro ao carregar perfil:', err)
@@ -103,13 +102,12 @@ export class ProfileUserComponent implements OnInit {
 
   // Métodos que serão implementados com chamadas à API
   onUpdateData() {
-    console.log('Implementar lógica de atualização');
-    // Ex: Abrir modal/formulário de edição
+  
 
   }
 
   onChangePassword() {
-    console.log('Implementar fluxo de alteração de senha');
+  
   }
 
 }
