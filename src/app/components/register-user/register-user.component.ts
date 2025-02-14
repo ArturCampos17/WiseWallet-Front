@@ -12,6 +12,7 @@ export class RegisterUserComponent {
   errorMessage: string = '';
 
   constructor(private fb: FormBuilder, private userService: UserService) {
+    
     this.registrationForm = this.fb.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],

@@ -1,5 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +12,15 @@ export class ProfileUserComponent implements OnInit {
 
   isEditing = false;
   originalUserData: any;
+  userProfile: any = null;
+  loading = true;
+  error = false; 
+  errorMessage = '';
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
     if (this.isEditing) {
-      this.originalUserData = { ...this.user };
+      this.originalUserData = { ...this.userService };
     }
   }
 
@@ -35,79 +41,43 @@ export class ProfileUserComponent implements OnInit {
     }
     input.value = value;
   }
+
   saveChanges() {
-    
-    this.isEditing = false;
-    this.originalUserData = null;
+    this.userService.updateUserProfile(this.userProfile).subscribe(
+      (updatedData) => {
+        console.log('Perfil atualizado com sucesso:', updatedData);
+        this.isEditing = false;
+        this.originalUserData = null;
+      },
+      (error) => {
+        console.error('Erro ao atualizar perfil:', error);
+        alert('Ocorreu um erro ao salvar as alterações.');
+      }
+    );
   }
-
+  
   cancelEdit() {
-    this.user = { ...this.originalUserData };
+    this.userService = { ...this.originalUserData };
     this.isEditing = false;
   }
 
-  // Variável que será populada pelo backend posteriormente
-  user: any = {
-   
-    fullName: 'Artur Campos Periera',
-    email: 'arturp282@gmail.com',
-    phone: '(48) 9 9699-5811',
-    accountNumber: '123456-7',
-    doc: '123.456.789-09',
-    birthDate: "17/03/2001",
-    registrationDate: new Date('2022-03-15'),
-    twoFactorAuth: true,
-    lastLogin: new Date(),
-    accountType: 'Premium',
-
-    residentialAddress: {
-      street: 'Avenida Paulista',
-      number: '1000',
-      complement: 'Apto 123',
-      neighborhood: 'Bela Vista',
-      city: 'São Paulo',
-      state: 'SP',
-      zipCode: '01311000'
-    },
-
-    billingAddress: {
-      street: 'Rua Haddock Lobo',
-      number: '595',
-      complement: 'Sala 45',
-      neighborhood: 'Cerqueira César',
-      city: 'São Paulo',
-      state: 'SP',
-      zipCode: '01414001'
-    },
-
-    emergencyContact: {
-      name: 'Carlos Eduardo Oliveira',
-      phone: '11988776655',
-      relationship: 'Cônjuge'
-    },
-
-  };
-
-  constructor() {
-
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
 
-    /* this.apiService.getUserProfile().subscribe({
-      next: (data) => this.user = data,
-      error: (err) => console.error('Erro ao carregar perfil:', err)
-    }); */
+    this.userService.getUserProfile().subscribe({
+      next: (data) => {
+        this.userProfile = data;
+        this.loading = false;
+      },
+      error: (error) => {
+        this.error = true;
+        this.loading = false;
+        this.errorMessage = error.message; 
+      }
+    });
   }
 
-  // Métodos que serão implementados com chamadas à API
-  onUpdateData() {
-  
-
-  }
-
-  onChangePassword() {
-  
-  }
+ 
 
 }

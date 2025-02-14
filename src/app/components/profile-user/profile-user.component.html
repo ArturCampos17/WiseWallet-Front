@@ -1,4 +1,29 @@
-<!-- profile.component.html -->
+<!-- <div *ngIf="loading">
+  Carregando perfil...
+</div>
+
+<div *ngIf="error">
+  <p style="color: red;">{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="!loading && !error && userProfile">
+  <h2>Perfil do Usuário</h2>
+
+  <p><strong>Nome:</strong> {{ userProfile.name }} {{ userProfile.lastName }}</p>
+  <p><strong>Data de Nascimento:</strong> {{ userProfile.birthDate | date:'dd/MM/yyyy' }}</p>
+  <p><strong>CPF/CNPJ:</strong> {{ userProfile.cpfCnpj }}</p>
+  <p><strong>Profissão:</strong> {{ userProfile.profession }}</p>
+  <p><strong>Email:</strong> {{ userProfile.email }}</p>
+  <p><strong>Telefone:</strong> {{ userProfile.phone }}</p>
+  <p><strong>Endereço:</strong> {{ userProfile.address }}, {{ userProfile.number }}</p>
+  <p><strong>Bairro:</strong> {{ userProfile.neighborhood }}</p>
+  <p><strong>Cidade:</strong> {{ userProfile.city }}</p>
+  <p><strong>Estado:</strong> {{ userProfile.state }}</p>
+  <p><strong>País:</strong> {{ userProfile.country }}</p>
+  <p><strong>CEP:</strong> {{ userProfile.cep || 'Não informado' }}</p>
+</div> -->
+
+
 <section class="profile-container">
   <!-- Cabeçalho -->
   <div class="avatar-section">
@@ -6,10 +31,9 @@
       <i class="fas fa-user-tie"></i>
     </div>
     <div class="account-status">
-      <span class="status-badge verified">Cliente desde {{ user.registrationDate | date: 'MM/yyyy' }}</span>
+      <span class="status-badge verified">Cliente desde {{ userProfile.registrationDate | date: 'MM/yyyy' }}</span>
     </div>
   </div>
-
   <!-- Informações Pessoais -->
   <div class="financial-info">
     <div class="info-section">
@@ -18,36 +42,39 @@
         <div class="data-item">
           <span>Nome:</span>
           <input class="editable-field"
-                 [(ngModel)]="user.fullName"
+                 [(ngModel)]="userProfile.name"
                  [disabled]="!isEditing"
                  [class.readonly-field]="!isEditing">
         </div>
-
         <div class="data-item">
-
+          <span>Sobrenome:</span>
+          <input class="editable-field"
+                 [(ngModel)]="userProfile.lastName"
+                 [disabled]="!isEditing"
+                 [class.readonly-field]="!isEditing">
+        </div>
+        <div class="data-item">
           <span>Data de Nascimento:</span>
           <input class="editable-field"
-          [(ngModel)]="user.birthDate"
-          [disabled]="!isEditing"
-          [class.readonly-field]="!isEditing">
-
+                 [(ngModel)]="userProfile.birthDate"
+                 [disabled]="!isEditing"
+                 [class.readonly-field]="!isEditing">
         </div>
         <div class="data-item">
           <span>CPF/CNPJ:</span>
           <input class="editable-field readonly-field"
-                 [value]="'***.' + user.doc.slice(-3)"
+                 [value]="'***.' + userProfile.cpfCnpj.slice(-3)"
                  disabled>
         </div>
         <div class="data-item">
           <span>Profissão:</span>
-          <input class="editable-field readonly-field"
-                 [value]=" user.occupation  || 'Não informado' "
+          <input class="editable-field"
+                 [(ngModel)]="userProfile.profession"
                  [disabled]="!isEditing"
                  [class.readonly-field]="!isEditing">
         </div>
       </div>
     </div>
-
     <!-- Contato -->
     <div class="info-section">
       <h2><i class="fas fa-address-book"></i> Contato</h2>
@@ -57,25 +84,23 @@
           <div>
             <span class="contact-type">Celular</span>
             <input class="editable-field readonly-field"
-            [value]="(user.phone | slice:0:4) + '**** - ' + (user.phone | slice:-3)"
-            [disabled]="!isEditing"
-            [class.readonly-field]="!isEditing">
+                   [value]="(userProfile.phone | slice:0:4) + '**** - ' + (userProfile.phone | slice:-3)"
+                   [disabled]="!isEditing"
+                   [class.readonly-field]="!isEditing">
           </div>
-
         </div>
         <div class="contact-method">
           <i class="fas fa-envelope"></i>
           <div>
             <span class="contact-type">E-mail</span>
             <input class="editable-field readonly-field"
-            [value]="user.email"
-            [disabled]="!isEditing"
-          [class.readonly-field]="!isEditing">
+                   [value]="userProfile.email"
+                   [disabled]="!isEditing"
+                   [class.readonly-field]="!isEditing">
           </div>
         </div>
       </div>
     </div>
-
     <!-- Endereços -->
     <div class="info-section">
       <h2><i class="fas fa-map-marker-alt"></i> Endereços</h2>
@@ -86,142 +111,58 @@
           <div class="address-field-group">
             <div class="address-line">
               <input class="editable-field"
-                     [(ngModel)]="user.residentialAddress.street"
+                     [(ngModel)]="userProfile.address"
                      [disabled]="!isEditing"
                      [class.readonly-field]="!isEditing"
                      placeholder="Rua/Avenida">
               <input class="editable-field"
-                     [(ngModel)]="user.residentialAddress.number"
+                     [(ngModel)]="userProfile.number"
                      [disabled]="!isEditing"
                      [class.readonly-field]="!isEditing"
                      placeholder="Número"
                      style="width: 100px">
             </div>
-
             <input class="editable-field"
-                   [(ngModel)]="user.residentialAddress.neighborhood"
+                   [(ngModel)]="userProfile.neighborhood"
                    [disabled]="!isEditing"
                    [class.readonly-field]="!isEditing"
                    placeholder="Bairro">
-
             <div class="address-line">
               <input class="editable-field"
-                     [(ngModel)]="user.residentialAddress.city"
+                     [(ngModel)]="userProfile.city"
                      [disabled]="!isEditing"
                      [class.readonly-field]="!isEditing"
                      placeholder="Cidade"
                      style="flex-grow: 1">
               <input class="editable-field"
-                     [(ngModel)]="user.residentialAddress.state"
+                     [(ngModel)]="userProfile.state"
                      [disabled]="!isEditing"
                      [class.readonly-field]="!isEditing"
                      placeholder="UF"
                      style="width: 60px"
                      maxlength="2">
             </div>
-
             <div *ngIf="!isEditing">
               <input class="editable-field readonly-field masked-data"
-                     [value]="'CEP: ' + (user.residentialAddress.zipCode | cep)"
+                     [value]="'CEP: ' + (userProfile.cep || 'Não informado')"
                      disabled>
             </div>
-
             <div *ngIf="isEditing">
               <input class="editable-field"
-                     [(ngModel)]="user.residentialAddress.zipCode"
+                     [(ngModel)]="userProfile.cep"
                      placeholder="00000-000"
                      (keypress)="validateCEP($event)"
                      maxlength="9">
             </div>
-          </div>
-        </div>
-
-        <!-- Endereço de Cobrança -->
-        <div class="address-card">
-          <h3>Cobrança</h3>
-          <div class="address-field-group">
-            <div class="address-line">
-              <input class="editable-field"
-                     [(ngModel)]="user.billingAddress.street"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="Rua/Avenida">
-              <input class="editable-field"
-                     [(ngModel)]="user.billingAddress.number"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="Número"
-                     style="width: 100px">
-            </div>
-
-            <input class="editable-field"
-                   [(ngModel)]="user.billingAddress.complement"
-                   [disabled]="!isEditing"
-                   [class.readonly-field]="!isEditing"
-                   placeholder="Complemento">
-
-            <div class="address-line">
-              <input class="editable-field"
-                     [(ngModel)]="user.billingAddress.city"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="Cidade"
-                     style="flex-grow: 1">
-              <input class="editable-field"
-                     [(ngModel)]="user.billingAddress.state"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="UF"
-                     style="width: 60px"
-                     maxlength="2">
-            </div>
-
-            <!-- <div *ngIf="!isEditing">
-              <input class="editable-field readonly-field masked-data"
-                     [value]="'CEP: ' + (user.billingAddress.zipCode | cep)"
-                     disabled>
-            </div> -->
-
-            <!-- <div *ngIf="isEditing">
-              <input class="editable-field"
-                     [(ngModel)]="user.billingAddress.zipCode"
-                     placeholder="00000-000"
-                     (keypress)="validateCEP($event)"
-                     maxlength="9">
-            </div> -->
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Informações Adicionais -->
-    <div class="info-section">
-      <!-- <h2><i class="fas fa-info-circle"></i> Informações Adicionais</h2>
-      <div class="additional-info-grid">
-        <div class="data-item">
-          <span>Estado Civil:</span>
-          <select class="editable-field"
-                  [(ngModel)]="user.maritalStatus"
-                  [disabled]="!isEditing"
-                  [class.readonly-field]="!isEditing">
-            <option value="Solteiro">Solteiro(a)</option>
-            <option value="Casado">Casado(a)</option>
-            <option value="Divorciado">Divorciado(a)</option>
-            <option value="Viúvo">Viúvo(a)</option>
-          </select>
-        </div>
-
-        <div class="data-item">
-          <span>Salario:</span>
-          <p class="masked-data">R$ *******</p>
-        </div>
-    </div> -->
-
+    <!-- Botões de Ação -->
     <div class="profile-actions">
       <button *ngIf="!isEditing" class="btn-primary" (click)="toggleEdit()">
         <i class="fas fa-edit"></i> Editar Perfil
       </button>
-      
       <div *ngIf="isEditing" class="edit-actions">
         <button class="btn-success" (click)="saveChanges()">
           <i class="fas fa-check"></i> Salvar Alterações
@@ -231,6 +172,5 @@
         </button>
       </div>
     </div>
-  </div>
   </div>
 </section>

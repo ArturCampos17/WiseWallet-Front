@@ -34,7 +34,7 @@ export class AuthService {
     );
   }
 
-
+                       
   logout() {
     this.http.post('/api/logout', {}, { withCredentials: true }).subscribe(() => {
       this.setAuthenticated(false);

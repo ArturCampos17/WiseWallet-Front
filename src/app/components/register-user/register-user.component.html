@@ -11,7 +11,8 @@
         </div>
         <div class="data-item">
           <label for="lastName">Sobrenome</label>
-          <input id="lastName" type="text" formControlName="lastName" class="editable-field" placeholder="Digite seu sobrenome" />
+          <input id="lastName" type="text" formControlName="lastName" class="editable-field"
+            placeholder="Digite seu sobrenome" />
         </div>
         <div class="data-item">
           <label for="birthDate">Data de Nascimento</label>
@@ -19,61 +20,101 @@
         </div>
         <div class="data-item">
           <label for="cpfCnpj">CPF/CNPJ</label>
-          <input id="cpfCnpj" type="text" formControlName="cpfCnpj" class="editable-field" placeholder="Digite seu CPF/CNPJ" />
+          <input id="cpfCnpj" type="text" formControlName="cpfCnpj" class="editable-field"
+            placeholder="Digite seu CPF/CNPJ" />
         </div>
         <div class="data-item">
           <label for="profession">Profissão</label>
-          <input id="profession" type="text" formControlName="profession" class="editable-field" placeholder="Digite sua profissão" />
+          <input id="profession" type="text" formControlName="profession" class="editable-field"
+            placeholder="Digite sua profissão" />
         </div>
       </div>
 
       <!-- Contato -->
-       <br>
+      <br>
       <div class="contact-grid">
         <div class="data-item">
           <label for="email">E-mail</label>
-          <input id="email" type="email" formControlName="email" class="editable-field" placeholder="Digite seu e-mail" />
+          <input id="email" type="email" formControlName="email" class="editable-field"
+            placeholder="Digite seu e-mail"    autocomplete="new-password">
         </div>
         <div class="data-item">
           <label for="password">Senha</label>
-          <input id="password" type="password" formControlName="password" class="editable-field" placeholder="Digite sua senha" />
+          <input id="password" type="password" formControlName="password" class="editable-field"
+            placeholder="Digite sua senha"     autocomplete="new-password">
         </div>
         <div class="data-item">
           <label for="phone">Telefone</label>
-          <input id="phone" type="tel" formControlName="phone" class="editable-field" placeholder="Digite seu telefone" />
+          <input id="phone" type="tel" formControlName="phone" class="editable-field"
+            placeholder="Digite seu telefone" />
         </div>
       </div>
 
       <!-- Endereço -->
-       <br>
+      <br>
       <div class="address-grid">
         <div class="data-item">
           <label for="address">Endereço</label>
-          <input id="address" type="text" formControlName="address" class="editable-field" placeholder="Digite seu endereço" />
+          <input id="address" type="text" formControlName="address" class="editable-field"
+            placeholder="Digite seu endereço" />
         </div>
         <div class="data-item">
           <label for="complement">Complemento</label>
-          <input id="complement" type="text" formControlName="complement" class="editable-field" placeholder="Digite o complemento" />
+          <input id="complement" type="text" formControlName="complement" class="editable-field"
+            placeholder="Digite o complemento" />
         </div>
         <div class="data-item">
           <label for="number">Número</label>
-          <input id="number" type="text" formControlName="number" class="editable-field" placeholder="Digite o número" />
+          <input id="number" type="text" formControlName="number" class="editable-field"
+            placeholder="Digite o número" />
         </div>
         <div class="data-item">
           <label for="neighborhood">Bairro</label>
-          <input id="neighborhood" type="text" formControlName="neighborhood" class="editable-field" placeholder="Digite o bairro" />
+          <input id="neighborhood" type="text" formControlName="neighborhood" class="editable-field"
+            placeholder="Digite o bairro" />
         </div>
         <div class="data-item">
           <label for="city">Cidade</label>
           <input id="city" type="text" formControlName="city" class="editable-field" placeholder="Digite a cidade" />
         </div>
         <div class="data-item">
-          <label for="state">Estado</label>
-          <input id="state" type="text" formControlName="state" class="editable-field" placeholder="Digite o estado" />
+
+          <label for="state">Estado:</label>
+          <select id="state" name="state" formControlName="state" class="editable-field" placeholder="Selecione um estado">
+            <option value="">Selecione um estado</option>
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MS">MS</option>
+            <option value="MT">MT</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+          </select>
         </div>
         <div class="data-item">
           <label for="country">País</label>
-          <input id="country" type="text" formControlName="country" class="editable-field" placeholder="Digite o país" />
+          <input id="country" type="text" formControlName="country" class="editable-field"
+            placeholder="Digite o país" />
         </div>
         <div class="data-item">
           <label for="cep">CEP</label>
