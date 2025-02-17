@@ -7,8 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule,NbAccordionModule  } from '@nebular/theme';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './components/interceptors/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbToastrModule } from '@nebular/theme';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -58,6 +59,7 @@ registerLocaleData(localePt);
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule, // 🔹 Necessário para animações do Nebular
+    NbToastrModule.forRoot(),
     NbThemeModule.forRoot({ name: 'default' }), // 🔹 Inicializa o tema do Nebular
     NbLayoutModule,          // 🔹 Layout do Nebular
     NbCardModule,            // 🔹 Para usar <nb-card>

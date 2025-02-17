@@ -1,29 +1,3 @@
-<!-- <div *ngIf="loading">
-  Carregando perfil...
-</div>
-
-<div *ngIf="error">
-  <p style="color: red;">{{ errorMessage }}</p>
-</div>
-
-<div *ngIf="!loading && !error && userProfile">
-  <h2>Perfil do Usuário</h2>
-
-  <p><strong>Nome:</strong> {{ userProfile.name }} {{ userProfile.lastName }}</p>
-  <p><strong>Data de Nascimento:</strong> {{ userProfile.birthDate | date:'dd/MM/yyyy' }}</p>
-  <p><strong>CPF/CNPJ:</strong> {{ userProfile.cpfCnpj }}</p>
-  <p><strong>Profissão:</strong> {{ userProfile.profession }}</p>
-  <p><strong>Email:</strong> {{ userProfile.email }}</p>
-  <p><strong>Telefone:</strong> {{ userProfile.phone }}</p>
-  <p><strong>Endereço:</strong> {{ userProfile.address }}, {{ userProfile.number }}</p>
-  <p><strong>Bairro:</strong> {{ userProfile.neighborhood }}</p>
-  <p><strong>Cidade:</strong> {{ userProfile.city }}</p>
-  <p><strong>Estado:</strong> {{ userProfile.state }}</p>
-  <p><strong>País:</strong> {{ userProfile.country }}</p>
-  <p><strong>CEP:</strong> {{ userProfile.cep || 'Não informado' }}</p>
-</div> -->
-
-
 <section class="profile-container">
   <!-- Cabeçalho -->
   <div class="avatar-section">
@@ -40,38 +14,28 @@
       <h2><i class="fas fa-id-card"></i> Dados Pessoais</h2>
       <div class="personal-data-grid">
         <div class="data-item">
-          <span>Nome:</span>
-          <input class="editable-field"
-                 [(ngModel)]="userProfile.name"
-                 [disabled]="!isEditing"
-                 [class.readonly-field]="!isEditing">
+          <b><span>Nome:</span></b>
+          <input class="editable-field" [(ngModel)]="userProfile.name" [disabled]="!isEditing"
+            [class.readonly-field]="!isEditing">
         </div>
         <div class="data-item">
-          <span>Sobrenome:</span>
-          <input class="editable-field"
-                 [(ngModel)]="userProfile.lastName"
-                 [disabled]="!isEditing"
-                 [class.readonly-field]="!isEditing">
+          <b><span>Sobrenome:</span></b>
+          <input class="editable-field" [(ngModel)]="userProfile.lastName" [disabled]="!isEditing"
+            [class.readonly-field]="!isEditing">
         </div>
         <div class="data-item">
-          <span>Data de Nascimento:</span>
-          <input class="editable-field"
-                 [(ngModel)]="userProfile.birthDate"
-                 [disabled]="!isEditing"
-                 [class.readonly-field]="!isEditing">
+          <b> <span>Data de Nascimento:</span></b>
+          <input class="editable-field" [(ngModel)]="userProfile.birthDate" [disabled]="!isEditing"
+            [class.readonly-field]="!isEditing">
         </div>
         <div class="data-item">
-          <span>CPF/CNPJ:</span>
-          <input class="editable-field readonly-field"
-                 [value]="'***.' + userProfile.cpfCnpj.slice(-3)"
-                 disabled>
+          <b><span>CPF/CNPJ:</span></b>
+          <input class="editable-field readonly-field" [value]="'***.' + userProfile.cpfCnpj.slice(-3)" disabled>
         </div>
         <div class="data-item">
-          <span>Profissão:</span>
-          <input class="editable-field"
-                 [(ngModel)]="userProfile.profession"
-                 [disabled]="!isEditing"
-                 [class.readonly-field]="!isEditing">
+          <b><span>Profissão:</span></b>
+          <input class="editable-field" [(ngModel)]="userProfile.profession" [disabled]="!isEditing"
+            [class.readonly-field]="!isEditing">
         </div>
       </div>
     </div>
@@ -82,21 +46,18 @@
         <div class="contact-method">
           <i class="fas fa-phone"></i>
           <div>
-            <span class="contact-type">Celular</span>
+            <b><span class="contact-type">Celular</span></b>
             <input class="editable-field readonly-field"
-                   [value]="(userProfile.phone | slice:0:4) + '**** - ' + (userProfile.phone | slice:-3)"
-                   [disabled]="!isEditing"
-                   [class.readonly-field]="!isEditing">
+              [value]="(userProfile.phone | slice:0:4) + '**** - ' + (userProfile.phone | slice:-3)"
+              [disabled]="!isEditing" [class.readonly-field]="!isEditing">
           </div>
         </div>
         <div class="contact-method">
           <i class="fas fa-envelope"></i>
           <div>
-            <span class="contact-type">E-mail</span>
-            <input class="editable-field readonly-field"
-                   [value]="userProfile.email"
-                   [disabled]="!isEditing"
-                   [class.readonly-field]="!isEditing">
+            <b> <span class="contact-type">E-mail</span></b>
+            <input class="editable-field readonly-field" [value]="userProfile.email" [disabled]="!isEditing"
+              [class.readonly-field]="!isEditing">
           </div>
         </div>
       </div>
@@ -109,50 +70,39 @@
         <div class="address-card">
           <h3>Residencial</h3>
           <div class="address-field-group">
+
             <div class="address-line">
-              <input class="editable-field"
-                     [(ngModel)]="userProfile.address"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="Rua/Avenida">
-              <input class="editable-field"
-                     [(ngModel)]="userProfile.number"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="Número"
-                     style="width: 100px">
+              <b><span>Rua:</span></b>
+              <input class="editable-field" [(ngModel)]="userProfile.address" [disabled]="!isEditing"
+                [class.readonly-field]="!isEditing" placeholder="Rua/Avenida">
+
+              <b><span>Bairro:</span></b>
+              <input class="editable-field" [(ngModel)]="userProfile.neighborhood" [disabled]="!isEditing"
+                [class.readonly-field]="!isEditing" placeholder="Bairro">
+              <b><span>Numero:</span></b>
+              <input class="editable-field" [(ngModel)]="userProfile.number" [disabled]="!isEditing"
+                [class.readonly-field]="!isEditing" placeholder="Número" style="width: 50px" >
             </div>
-            <input class="editable-field"
-                   [(ngModel)]="userProfile.neighborhood"
-                   [disabled]="!isEditing"
-                   [class.readonly-field]="!isEditing"
-                   placeholder="Bairro">
+
             <div class="address-line">
-              <input class="editable-field"
-                     [(ngModel)]="userProfile.city"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="Cidade"
-                     style="flex-grow: 1">
-              <input class="editable-field"
-                     [(ngModel)]="userProfile.state"
-                     [disabled]="!isEditing"
-                     [class.readonly-field]="!isEditing"
-                     placeholder="UF"
-                     style="width: 60px"
-                     maxlength="2">
-            </div>
-            <div *ngIf="!isEditing">
-              <input class="editable-field readonly-field masked-data"
-                     [value]="'CEP: ' + (userProfile.cep || 'Não informado')"
-                     disabled>
-            </div>
-            <div *ngIf="isEditing">
-              <input class="editable-field"
-                     [(ngModel)]="userProfile.cep"
-                     placeholder="00000-000"
-                     (keypress)="validateCEP($event)"
-                     maxlength="9">
+              <b><span>Cidade:</span></b>
+              <input class="editable-field" [(ngModel)]="userProfile.city" [disabled]="!isEditing"
+                [class.readonly-field]="!isEditing" placeholder="Cidade">
+              
+              <b><span>Estado:</span></b>
+              <input class="editable-field" [(ngModel)]="userProfile.state" [disabled]="!isEditing"
+                [class.readonly-field]="!isEditing" placeholder="UF" maxlength="2">
+
+              <b><span>CEP:</span></b>
+              <div *ngIf="!isEditing">
+                <input class="editable-field readonly-field masked-data" [value]="(userProfile.cep || 'Não informado')"
+                  disabled>
+              </div>
+              
+              <div *ngIf="isEditing">
+                <input class="editable-field" [(ngModel)]="userProfile.cep" placeholder="00000-000"
+                  (keypress)="validateCEP($event)" maxlength="9">
+              </div>
             </div>
           </div>
         </div>

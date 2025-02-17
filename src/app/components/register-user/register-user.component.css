@@ -20,6 +20,20 @@
   border-radius: 15px;
   box-shadow: var(--shadow);
 }
+.nb-toast-success {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.nb-toast-danger {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+.nb-toast-warning {
+  background-color: #ff9800 !important;
+  color: white !important;
+}
 
 .info-section {
   background: #f8f8f8;

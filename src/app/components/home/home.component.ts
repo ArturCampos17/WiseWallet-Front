@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,19 +8,26 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  userName: string | null = null;
-
-  constructor(private authService: AuthService) {}
+  
+  originalUserData: any;
+  userProfile: any = null;
+  loading = true;
+  error = false; 
+  errorMessage = '';
+  
+  constructor(private authService: AuthService, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.authService.getUser().subscribe(
-      (userData) => {
-        this.userName = userData.name; // Armazena o nome do usuário
+    this.userService.getUserProfile().subscribe({
+      next: (data) => {
+        this.userProfile = data;
+        this.loading = false;
       },
-      (error) => {
-        console.error('Erro ao obter dados do usuário:', error);
-        this.userName = null; // Define como nulo em caso de erro
+      error: (error) => {
+        this.error = true;
+        this.loading = false;
+        this.errorMessage = error.message; 
       }
-    );
+    });
   }
 }
