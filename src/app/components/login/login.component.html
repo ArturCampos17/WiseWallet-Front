@@ -1,20 +1,22 @@
-<form (submit)="onLogin()">
+<nb-layout>
+  <nb-layout-column>
+    <form (submit)="onLogin()">
 
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" [(ngModel)]="credentials.email" name="email"  autocomplete="current-email" required />
-  </div>
-  <div>
-    <label for="password">Senha:</label>
-    <input type="password" id="password" [(ngModel)]="credentials.password" name="password"  autocomplete="current-password" required />
-  </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="credentials.email" name="email" autocomplete="current-email"
+          required />
+      </div>
+      <div>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" [(ngModel)]="credentials.password" name="password"
+          autocomplete="current-password" required />
+      </div>
 
-  <!-- <div *ngIf="loginError" class="error-message">
-    Credenciais inválidas! Tente admin/1234
-  </div> -->
-
-  <button type="submit">Login</button>
-<div>
-  <h6 display="center"> Não tem conta? <a routerLink="../register-user">Cadastre-se</a></h6>
-</div>
-</form>
+      <button type="submit">Login</button>
+      <div>
+        <h6 display="center"> Não tem conta? <a routerLink="../register-user">Cadastre-se</a></h6>
+      </div>
+    </form>
+  </nb-layout-column>
+</nb-layout>

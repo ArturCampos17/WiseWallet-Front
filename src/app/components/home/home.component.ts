@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
   
   originalUserData: any;
-  userProfile: any = null;
+  userProfile: any = {};
   loading = true;
   error = false; 
   errorMessage = '';
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUserProfile().subscribe({
       next: (data) => {
-        this.userProfile = data;
+        this.userProfile = data || {};
         this.loading = false;
       },
       error: (error) => {

@@ -26,7 +26,7 @@ export class RegisterTransactionComponent implements OnInit {
   onSubmit(): void {
     if (this.transactionForm.valid) {
       console.log('Transação registrada:', this.transactionForm.value);
-      // Aqui você pode adicionar a lógica para salvar a transação no backend ou em um serviço.
+    
     } else {
       console.error('Formulário inválido');
     }

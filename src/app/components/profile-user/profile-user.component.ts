@@ -12,15 +12,16 @@ export class ProfileUserComponent implements OnInit {
 
   isEditing = false;
   originalUserData: any;
-  userProfile: any = null;
+  userProfile: any = {};
   loading = true;
   error = false; 
   errorMessage = '';
+  formattedBirthDate: string = '';
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
     if (this.isEditing) {
-      this.originalUserData = { ...this.userService };
+      this.originalUserData = { ...this.userProfile };
     }
   }
 
@@ -32,7 +33,6 @@ export class ProfileUserComponent implements OnInit {
       event.preventDefault();
     }
 
-    // Formatação automática
     const input = event.target as HTMLInputElement;
     let value = input.value.replace(/\D/g, '');
 
@@ -42,33 +42,45 @@ export class ProfileUserComponent implements OnInit {
     input.value = value;
   }
 
+
   saveChanges() {
-    this.userService.updateUserProfile(this.userProfile).subscribe(
-      (updatedData) => {
+    if (!this.userProfile || !this.userProfile.name || !this.userProfile.email) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+  
+    console.log('Enviando dados ao backend:', JSON.stringify(this.userProfile, null, 2));
+    this.userService.updateUserProfile(this.userProfile).subscribe({
+      next: (updatedData) => {
         console.log('Perfil atualizado com sucesso:', updatedData);
         this.isEditing = false;
         this.originalUserData = null;
+        alert('Alterações salvas com sucesso!');
       },
-      (error) => {
+      error: (error) => {
         console.error('Erro ao atualizar perfil:', error);
-        alert('Ocorreu um erro ao salvar as alterações.');
+        alert('Ocorreu um erro ao salvar as alterações. Por favor, tente novamente.');
       }
-    );
+    });
   }
   
   cancelEdit() {
-    this.userService = { ...this.originalUserData };
+    this.userProfile = { ...this.originalUserData };
     this.isEditing = false;
   }
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-
+    
     this.userService.getUserProfile().subscribe({
+      
       next: (data) => {
-        this.userProfile = data;
+        this.userProfile = data || {};
         this.loading = false;
+        if (this.userProfile.birthDate) {
+          this.formattedBirthDate = this.formatDate(this.userProfile.birthDate);
+        }
       },
       error: (error) => {
         this.error = true;
@@ -76,8 +88,15 @@ export class ProfileUserComponent implements OnInit {
         this.errorMessage = error.message; 
       }
     });
+    
   }
 
- 
+  private formatDate(dateString: string): string {
+    const date = new Date(dateString + 'T00:00:00'); 
+    const day = String(date.getUTCDate()).padStart(2, '0'); 
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); 
+    const year = date.getUTCFullYear();
+    return `${day}/${month}/${year}`;
+  }
 
 }

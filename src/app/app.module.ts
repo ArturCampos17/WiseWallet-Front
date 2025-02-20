@@ -7,9 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModule, NbButtonModule,NbIconModule,NbAccordionModule  } from '@nebular/theme';
-import { AuthInterceptor } from './components/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbToastrModule } from '@nebular/theme';
+import { FormsModule } from '@angular/forms';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -21,7 +21,7 @@ import { CategoryManagementComponent } from './components/category-management/ca
 import { StatisticsReportComponent } from './components/statistics-report/statistics-report.component';
 import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 import { LoginComponent } from './components/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './components/interceptors/auth.interceptor';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CepPipe } from './components/shared/pipes/cep.pipe';
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
@@ -58,23 +58,26 @@ registerLocaleData(localePt);
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule, // 🔹 Necessário para animações do Nebular
-    NbToastrModule.forRoot(),
-    NbThemeModule.forRoot({ name: 'default' }), // 🔹 Inicializa o tema do Nebular
-    NbLayoutModule,          // 🔹 Layout do Nebular
-    NbCardModule,            // 🔹 Para usar <nb-card>
-    NbListModule,            // 🔹 Para usar <nb-list> e <nb-list-item>
-    NbInputModule,           // ✅ Para usar <nb-input> e <nb-input-group>
-    NbButtonModule,          // ✅ Para usar <nb-button>
+    BrowserAnimationsModule,
+    NbToastrModule.forRoot({
+      duration: 3000,
+      preventDuplicates: true,
+      destroyByClick: true, 
+    }),
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,         
+    NbCardModule,           
+    NbListModule,          
+    NbInputModule,         
+    NbButtonModule,        
     NbIconModule,
     NbAccordionModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' }, // Provedor existente
-    {
+    { provide: LOCALE_ID, useValue: 'pt-BR' },{
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true, // Permite múltiplos interceptors
+      multi: true, 
     },
   ],
   bootstrap: [AppComponent]

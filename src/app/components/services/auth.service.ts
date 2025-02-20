@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -10,30 +10,18 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  private apiUrl = 'http://localhost:8080/api/users';
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(credentials: { email: string; password: string }) {
-    return this.http.post<{ message: string; authenticated: boolean }>(
-      'http://localhost:8080/api/auth/login',
-      credentials,
-      { withCredentials: true }
-    ).subscribe(
-      (response) => {
-        if (response.authenticated) {
-          this.setAuthenticated(true);
-          this.router.navigate(['/home']);
-        } else {
-          alert(response.message);
-        }
-      },
-      (error) => {
+  login(credentials: any): Observable<any> {
+    return this.http.post(`http://localhost:8080/api/auth/login`, credentials).pipe(
+      catchError((error: HttpErrorResponse) => {
         console.error('Erro ao fazer login:', error);
-        alert('Erro ao fazer login. Verifique suas credenciais.');
-      }
+        return throwError(() => new Error(error.message));
+      })
     );
   }
-
                        
   logout() {
     this.http.post('/api/logout', {}, { withCredentials: true }).subscribe(() => {
@@ -53,9 +41,14 @@ checkAuthStatus() {
     }
   );
 }
-  setAuthenticated(status: boolean) {
-    this.isAuthenticatedSubject.next(status);
+
+setAuthenticated(authenticated: boolean, token?: string): void {
+  this.isAuthenticatedSubject.next(authenticated);
+  localStorage.setItem('isAuthenticated', authenticated.toString());
+  if (token) {
+    localStorage.setItem('jwtToken', token);
   }
+}
 
   getIsAuthenticated(): boolean {
     return this.isAuthenticatedSubject.value;
