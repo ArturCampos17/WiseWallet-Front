@@ -27,6 +27,7 @@ import { CepPipe } from './components/shared/pipes/cep.pipe';
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { TestgridComponent } from './components/testgrid/testgrid.component';
 
 registerLocaleData(localePt);
 
@@ -49,10 +50,12 @@ registerLocaleData(localePt);
     CepPipe,
     AuthLayoutComponent,
     MainLayoutComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    TestgridComponent
 
   ],
   imports: [
+
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
@@ -72,6 +75,7 @@ registerLocaleData(localePt);
     NbButtonModule,        
     NbIconModule,
     NbAccordionModule
+    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },{

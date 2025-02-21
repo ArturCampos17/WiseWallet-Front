@@ -17,6 +17,7 @@ export class RegisterTransactionComponent implements OnInit {
       receiver: ['', Validators.required],
       category: ['', Validators.required],
       type: ['', Validators.required],
+      paymentType: ['', Validators.required],
       situation: ['', Validators.required],
       date: ['', Validators.required],
       value: [null, [Validators.required, Validators.min(0.01)]]

@@ -26,13 +26,26 @@
       </select>
     </div>
 
-    <!-- Tipo -->
+    <!-- Tipo Pagamento -->
     <div class="form-group">
       <label for="type">Tipo:</label>
       <select id="type" formControlName="type">
         <option value="" disabled selected>Selecione o tipo</option>
-        <option value="entrada">Entrada</option>
-        <option value="saida">Saída</option>
+        <option value="ENTRADA">Entrada</option>
+        <option value="SAIDA">Saida</option>>
+      </select>
+    </div>
+
+    <!-- Tipo Pagamento -->
+    <div class="form-group">
+      <label for="paymentType">Tipo Pagamento:</label>
+      <select id="paymentType" formControlName="paymentType">
+        <option value="" disabled selected>Selecione o tipo</option>
+        <option value="BOLETO">Boleto</option>
+        <option value="CREDITO">Crédito</option>
+        <option value="DEBITO">Débito</option>
+        <option value="DINHEIRO">Dinheiro</option>
+        <option value="PIX">Pix</option>
       </select>
     </div>
 
@@ -41,9 +54,10 @@
       <label for="situation">Situação:</label>
       <select id="situation" formControlName="situation">
         <option value="" disabled selected>Selecione a situação</option>
-        <option value="pendente">Pendente</option>
-        <option value="concluida">Concluída</option>
-        <option value="cancelada">Cancelada</option>
+        <option value="ATRASADO">Atrasado</option>
+        <option value="PENDENTE">Pendente</option>
+        <option value="CONCLUIDA">Concluída</option>
+        <option value="CANCELADA">Cancelada</option>
       </select>
     </div>
 
