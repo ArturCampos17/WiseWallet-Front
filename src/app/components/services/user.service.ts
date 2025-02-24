@@ -13,7 +13,7 @@ export class UserService {
 
   registerUser(user: any): Observable<any> {
     user.cpfCnpj = this.cleanCpf(user.cpfCnpj);
-    return this.http.post(`${this.apiUrl}`, user).pipe(
+    return this.http.post(`${this.apiUrl}/register`, user).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Erro ao cadastrar usuário:', error);
         return throwError(() => new Error(error.message));
