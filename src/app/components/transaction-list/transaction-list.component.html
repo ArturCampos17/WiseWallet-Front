@@ -37,6 +37,7 @@
               <th>Situação</th>
               <th>Data</th>
               <th>Valor</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -49,6 +50,19 @@
               <td>{{ transaction.date | date:'dd/MM/yyyy' }}</td>
               <td class="amount" [ngClass]="{ 'positive': transaction.amount > 0, 'negative': transaction.amount < 0 }">
                 {{ transaction.amount | currency:'BRL' }}
+              </td>
+              <td>
+                <!-- Botão de Cancelamento -->
+                <button
+                  nbButton
+                  status="danger"
+                  size="small"
+                  *ngIf="isCancelable(transaction)"
+                  [disabled]="transaction.situation === 'Cancelado'"
+                  (click)="cancelTransaction(transaction)"
+                >
+                  {{ transaction.situation === 'Cancelado' ? 'Cancelado' : 'Cancelar' }}
+                </button>
               </td>
             </tr>
           </tbody>

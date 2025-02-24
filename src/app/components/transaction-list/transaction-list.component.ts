@@ -10,7 +10,7 @@ export class TransactionListComponent implements OnInit {
   filterDescription: string = '';
   filterCategory: string = '';
   filterSituation: string = '';
-  filterDate: string ='';
+  filterDate: string = '';
 
   // Opções para os selects
   categories: string[] = ['Lazer', 'Alimentação', 'Transporte', 'Moradia', 'Outros'];
@@ -36,10 +36,26 @@ export class TransactionListComponent implements OnInit {
     });
   }
 
-  getTotalAmount(): number{
-    return this.filteredTransactions.reduce((total,transactions) => total + transactions.amount,0);
+  getTotalAmount(): number {
+    return this.filteredTransactions.reduce((total, transactions) => total + transactions.amount, 0);
+  }
+  // Verificar se uma transação pode ser cancelada
+  isCancelable(transaction: any): boolean {
+    return ['Pago', 'Pendente', 'Cancelado'].includes(transaction.situation);
   }
 
+  // Cancelar uma transação
+  cancelTransaction(transaction: any) {
+    if (transaction.situation !== 'Cancelado') {
+      transaction.situation = 'Cancelado';
+    }
+  }
+
+
+  // Aplicar filtros
+  applyFilters() {
+    // Os filtros já são aplicados automaticamente pelo getter `filteredTransactions`
+  }
   constructor() { }
 
   ngOnInit(): void {
