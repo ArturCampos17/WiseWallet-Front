@@ -11,14 +11,23 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
   private apiUrl = 'http://localhost:8080/api/users';
+  private userEmail: string | null = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.checkAuthStatus();
+  }
 
   login(credentials: any): Observable<any> {
     return this.http.post(`http://localhost:8080/api/auth/login`, credentials).pipe(
       catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Ocorreu um erro desconhecido.';
+        if (error.status === 401) {
+          errorMessage = 'Credenciais inválidas. Tente novamente.';
+        } else if (error.status === 500) {
+          errorMessage = 'Erro interno do servidor. Tente novamente mais tarde.';
+        }
         console.error('Erro ao fazer login:', error);
-        return throwError(() => new Error(error.message));
+        return throwError(() => new Error(errorMessage));
       })
     );
   }
@@ -26,6 +35,7 @@ export class AuthService {
   logout() {
     this.http.post('/api/logout', {}, { withCredentials: true }).subscribe(() => {
       this.setAuthenticated(false);
+      localStorage.removeItem('jwtToken'); 
       this.router.navigate(['/login']);
     });
   }
@@ -56,5 +66,22 @@ setAuthenticated(authenticated: boolean, token?: string): void {
 
   getUser(): Observable<{ name: string; email: string }> {
     return this.http.get<{ name: string; email: string }>('http://localhost:8080/api/auth/user', { withCredentials: true });
+  }
+
+  getUserEmail(): string | null {
+    return this.userEmail;
+  }
+
+  setUserEmail(email: string): void {
+    this.userEmail = email;
+  }
+  
+  fetchUserDetails(): Observable<{ name: string; email: string }> {
+    return this.http.get<{ name: string; email: string }>('http://localhost:8080/api/auth/user', { withCredentials: true }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao buscar detalhes do usuário:', error);
+        return throwError(() => new Error(error.message));
+      })
+    );
   }
 }

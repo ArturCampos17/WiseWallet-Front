@@ -113,6 +113,36 @@ nb-accordion-item {
   color: red;
   font-weight: bold;
 }
+.menu-items-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu-items {
+  color: #4169E1;
+  padding: 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-items svg {
+  fill: currentColor;
+  width: 24px;
+  height: 24px;
+}
+
+.menu-items:hover svg {
+  transform: scale(1.1);
+}
+
+.menu-items.active svg {
+  fill: #ffffff;
+}
+
+
 
 /* ====== RESPONSIVIDADE ====== */
 @media (max-width: 768px) {

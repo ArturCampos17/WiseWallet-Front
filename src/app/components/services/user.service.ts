@@ -56,23 +56,25 @@ export class UserService {
     );
   }
 
-  updateUserProfile(userProfile: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/profile`, userProfile);
-  }
-  // updateUserProfile(updatedData: any): Observable<any> {
-  //   return this.http.put<any>(`${this.apiUrl}/profile`, updatedData).pipe(
-  //     catchError((error: HttpErrorResponse) => {
-  //       console.error('Erro ao editar usuário:', error);
-
-  //       let errorMsg = 'Erro desconhecido';
-  //       if (error.error instanceof ErrorEvent) {
-  //         errorMsg = `Erro do cliente: ${error.error.message}`;
-  //       } else {
-  //         errorMsg = `Erro do servidor (Código: ${error.status}): ${error.message}`;
-  //       }
-
-  //       return throwError(() => new Error(errorMsg));
-  //     })
-  //   );
+  // updateUserProfile(userProfile: any): Observable<any> {
+  //   return this.http.put(`${this.apiUrl}/profile`, userProfile);
   // }
+
+
+  updateUserProfile(userProfile: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/profile`, userProfile).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error('Erro ao editar usuário:', error);
+
+        let errorMsg = 'Erro desconhecido';
+        if (error.error instanceof ErrorEvent) {
+          errorMsg = `Erro do cliente: ${error.error.message}`;
+        } else {
+          errorMsg = `Erro do servidor (Código: ${error.status}): ${error.message}`;
+        }
+
+        return throwError(() => new Error(errorMsg));
+      })
+    );
+  }
 }

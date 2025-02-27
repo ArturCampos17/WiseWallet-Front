@@ -42,33 +42,6 @@ export class ProfileUserComponent implements OnInit {
     input.value = value;
   }
 
-
-  saveChanges() {
-    if (!this.userProfile || !this.userProfile.name || !this.userProfile.email) {
-      alert('Por favor, preencha todos os campos obrigatórios.');
-      return;
-    }
-  
-    console.log('Enviando dados ao backend:', JSON.stringify(this.userProfile, null, 2));
-    this.userService.updateUserProfile(this.userProfile).subscribe({
-      next: (updatedData) => {
-        console.log('Perfil atualizado com sucesso:', updatedData);
-        this.isEditing = false;
-        this.originalUserData = null;
-        alert('Alterações salvas com sucesso!');
-      },
-      error: (error) => {
-        console.error('Erro ao atualizar perfil:', error);
-        alert('Ocorreu um erro ao salvar as alterações. Por favor, tente novamente.');
-      }
-    });
-  }
-  
-  cancelEdit() {
-    this.userProfile = { ...this.originalUserData };
-    this.isEditing = false;
-  }
-
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -91,6 +64,39 @@ export class ProfileUserComponent implements OnInit {
     
   }
 
+  saveChanges() {
+    if (!this.userProfile || !this.userProfile.name || !this.userProfile.email) {
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+  
+    console.log('Enviando dados ao backend:', JSON.stringify(this.userProfile, null, 2));
+    this.userService.updateUserProfile(this.userProfile).subscribe({
+      next: (updatedData) => {
+        console.log('Perfil atualizado com sucesso:', updatedData);
+        this.isEditing = false;
+        this.originalUserData = null;
+        alert('Alterações salvas com sucesso!');
+      },
+      error: (error) => {
+        console.error('Erro ao atualizar perfil:', error);
+        if (error.status === 401) {
+          alert('Sessão expirada. Faça login novamente.');
+        } else if (error.status === 403) {
+          alert('Você não tem permissão para realizar esta operação.');
+        } else {
+          alert('Ocorreu um erro ao salvar as alterações. Por favor, tente novamente.');
+        }
+      },
+    });
+  }
+  
+  cancelEdit() {
+    this.userProfile = { ...this.originalUserData };
+    this.isEditing = false;
+  }
+
+  
   private formatDate(dateString: string): string {
     const date = new Date(dateString + 'T00:00:00'); 
     const day = String(date.getUTCDate()).padStart(2, '0'); 
