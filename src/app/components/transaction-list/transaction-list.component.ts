@@ -16,7 +16,9 @@
     filterDate: string = ''; // Filtro por data
     categories: string[] = ['Alimentação', 'Transporte', 'Lazer', 'Outros']; // Exemplo de categorias
     situations: string[] = ['PAGO', 'PENDENTE', 'CANCELADO', 'ATRASADO']; // Situações possíveis
-  
+    currentPage = 1; // Página atual
+    pageSize = 15;
+
     constructor(private transactionService: TransactionService) {}
   
     ngOnInit(): void {
@@ -36,25 +38,29 @@
     }
   
     get filteredTransactions() {
-      return this.transactions.filter((transaction) => {
-        const matchesDescription =
-          !this.filterDescription ||
-          transaction.description.toLowerCase().includes(this.filterDescription.toLowerCase());
-        const matchesCategory =
-          !this.filterCategory || transaction.category === this.filterCategory;
-        const matchesSituation =
-          !this.filterSituation || transaction.stats === this.filterSituation;
-        const matchesDate =
-          !this.filterDate || transaction.date === this.filterDate;
-  
-        return matchesDescription && matchesCategory && matchesSituation && matchesDate;
-      });
+      return this.transactions
+        .filter(transaction => {
+          const matchesDescription = transaction.description.toLowerCase().includes(this.filterDescription.toLowerCase());
+          const matchesCategory = !this.filterCategory || transaction.category === this.filterCategory;
+          const matchesSituation = !this.filterSituation || transaction.stats === this.filterSituation;
+          const matchesDate = !this.filterDate || transaction.date.toISOString().split('T')[0] === this.filterDate;
+          return matchesDescription && matchesCategory && matchesSituation && matchesDate;
+        })
+        .slice((this.currentPage - 1) * this.pageSize, this.currentPage * this.pageSize); // Paginação
     }
-  
+
     getTotalAmount() {
-      return this.filteredTransactions.reduce((total, transaction) => total + transaction.amount, 0);
+      return this.transactions
+        .filter(transaction => {
+          const matchesDescription = transaction.description.toLowerCase().includes(this.filterDescription.toLowerCase());
+          const matchesCategory = !this.filterCategory || transaction.category === this.filterCategory;
+          const matchesSituation = !this.filterSituation || transaction.stats === this.filterSituation;
+          const matchesDate = !this.filterDate || transaction.date.toISOString().split('T')[0] === this.filterDate;
+          return matchesDescription && matchesCategory && matchesSituation && matchesDate;
+        })
+        .reduce((total, transaction) => total + transaction.amount, 0);
     }
-  
+
     isCancelable(transaction: any) {
       return transaction.stats !== 'CANCELADO';
     }
@@ -78,110 +84,29 @@
         //);
       }
     }
+
+    get totalPages() {
+      return Math.ceil(
+        this.transactions.filter(transaction => {
+          const matchesDescription = transaction.description.toLowerCase().includes(this.filterDescription.toLowerCase());
+          const matchesCategory = !this.filterCategory || transaction.category === this.filterCategory;
+          const matchesSituation = !this.filterSituation || transaction.stats === this.filterSituation;
+          const matchesDate = !this.filterDate || transaction.date.toISOString().split('T')[0] === this.filterDate;
+          return matchesDescription && matchesCategory && matchesSituation && matchesDate;
+        }).length / this.pageSize
+      );
+    }
+    
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+      }
+    }
+    
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    }
   }
- 
-  //   // Dados das transações
- 
-  //   transactions: any[] = [];
-  //   filteredTransactions: any[] = [];
-  //   paginatedTransactions: any[] = [];
-  
-  //   // Paginação
-  //   currentPage: number = 1;
-  //   itemsPerPage: number = 5;
-  
-  //   constructor(
-  //     private authService: AuthService, // Serviço de autenticação
-  //     private transactionService: TransactionService
-  //   ) {}
-  
-  //   ngOnInit(): void {
-  //     // Verificar se o usuário está autenticado
-  //     if (!this.authService.getIsAuthenticated()) {
-  //       console.error('Usuário não autenticado.');
-  //       return;
-  //     }
-  
-  //     // Buscar os detalhes do usuário
-  //     this.authService.fetchUserDetails().subscribe(
-  //       (user) => {
-  //         const userEmail = user.email; // Extrair o email do usuário
-  //         this.authService.setUserEmail(userEmail); // Armazenar o email no serviço
-  
-  //         // Carregar transações do usuário
-  //         this.loadTransactions(userEmail);
-  //       },
-  //       (error) => {
-  //         console.error('Erro ao buscar detalhes do usuário:', error);
-  //       }
-  //     );
-  //   }
-  
-  //   // Carregar transações do usuário vinculado
-  //   loadTransactions(userEmail: string): void {
-  //     const token = localStorage.getItem('jwtToken'); // Obter o token JWT
-  
-  //     if (!token) {
-  //       console.error('Token JWT não encontrado.');
-  //       return;
-  //     }
-  
-  //     this.transactionService.getTransactionsByEmail(userEmail, token).subscribe(
-  //       (data: any[]) => {
-  //         // Salvar os dados recebidos
-  //         this.transactions = data.map(transaction => ({
-  //           ...transaction,
-  //           date: new Date(transaction.date) // Converter a data para objeto Date
-  //         }));
-  //         this.filteredTransactions = [...this.transactions]; // Inicializar os filtros
-  //         this.updatePagination(); // Atualizar a paginação
-  //       },
-  //       (error) => {
-  //         console.error('Erro ao carregar transações:', error);
-  //       }
-  //     );
-  //   }
-  
-  //   // Aplicar filtros
-  //   applyFilters(): void {
-  //     this.filteredTransactions = this.transactions.filter(transaction => {
-  //       return (
-  //         (!this.filters.description || transaction.description.toLowerCase().includes(this.filters.description.toLowerCase())) &&
-  //         (!this.filters.category || transaction.category === this.filters.category) &&
-  //         (!this.filters.situation || transaction.situation === this.filters.situation) &&
-  //         (!this.filters.date || transaction.date.toISOString().split('T')[0] === this.filters.date)
-  //       );
-  //     });
-  //     this.currentPage = 1; // Resetar para a primeira página
-  //     this.updatePagination();
-  //   }
-  
-  //   // Atualizar a lista paginada
-  //   updatePagination(): void {
-  //     const start = (this.currentPage - 1) * this.itemsPerPage;
-  //     const end = start + this.itemsPerPage;
-  //     this.paginatedTransactions = this.filteredTransactions.slice(start, end);
-  //   }
-  
-  //   // Alterar número de itens por página
-  //   onItemsPerPageChange(): void {
-  //     this.currentPage = 1; // Resetar para a primeira página
-  //     this.updatePagination();
-  //   }
-  
-  //   // Cancelar uma transação
-  //   cancelTransaction(transaction: any): void {
-  //     if (transaction.situation !== 'Cancelado') {
-  //       transaction.situation = 'Cancelado';
-  //     }
-  //   }
-  
-  //   // Calcular o total
-  //   getTotalAmount(): number {
-  //     return this.filteredTransactions.reduce((total, transaction) => total + transaction.amount, 0);
-  //   }
-  // }
-
-
-
  

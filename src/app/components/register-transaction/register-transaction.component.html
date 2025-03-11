@@ -10,8 +10,8 @@
 
     <!-- Destinatário -->
     <div class="form-group">
-      <label for="receiver">Destinatário:</label>
-      <input type="text" id="receiver" formControlName="receiver" placeholder="Digite o nome do destinatário" />
+      <label for="recipient">Destinatário:</label>
+      <input type="text" id="recipient" formControlName="recipient" placeholder="Digite o nome do destinatário" />
     </div>
 
     <!-- Categoria -->
@@ -49,15 +49,15 @@
       </select>
     </div>
 
-    <!-- Situação -->
+    <!-- Situação   ATRASADO, CANCELADO, PAGO, PENDENTE, -->
     <div class="form-group">
-      <label for="situation">Situação:</label>
-      <select id="situation" formControlName="situation">
+      <label for="stats">Situação:</label>
+      <select id="stats" formControlName="stats">
         <option value="" disabled selected>Selecione a situação</option>
         <option value="ATRASADO">Atrasado</option>
         <option value="PENDENTE">Pendente</option>
-        <option value="CONCLUIDA">Concluída</option>
-        <option value="CANCELADA">Cancelada</option>
+        <option value="PAGO">Pago</option>
+        <option value="CANCELADO">Cancelada</option>
       </select>
     </div>
 
@@ -69,8 +69,8 @@
 
     <!-- Valor -->
     <div class="form-group">
-      <label for="value">Valor:</label>
-      <input type="number" id="value" formControlName="value" step="0.01" placeholder="Digite o valor" />
+      <label for="amount">Valor:</label>
+      <input type="number" id="amount" formControlName="amount" step="0.01" placeholder="Digite o valor" />
     </div>
 
     <!-- Botão de Envio -->

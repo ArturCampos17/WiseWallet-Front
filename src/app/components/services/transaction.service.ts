@@ -19,5 +19,15 @@ export class TransactionService {
     return this.http.get(`${this.apiUrl}`, { headers });
   }
 
+  createTransaction(transactionData: any): Observable<any> {
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post(`${this.apiUrl}`, transactionData, { headers });
+  }
+  
   updateTransaction(){}
 }

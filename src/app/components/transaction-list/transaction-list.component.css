@@ -142,7 +142,32 @@ nb-accordion-item {
   fill: #ffffff;
 }
 
+/* Estilo para o contêiner do total */
+.total-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
 
+.total-table td {
+  text-align: left; 
+  padding: 0.5rem; 
+  border: none; 
+}
+
+.total-table td:last-child {
+  text-align: left; 
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pagination-container button {
+  margin: 0 0.5rem;
+}
 
 /* ====== RESPONSIVIDADE ====== */
 @media (max-width: 768px) {

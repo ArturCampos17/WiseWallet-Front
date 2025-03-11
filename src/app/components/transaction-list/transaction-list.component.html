@@ -1,3 +1,6 @@
+
+
+
 <div class="main-container">
   <!-- Barra de filtros -->
   <div class="filter-bar">
@@ -24,7 +27,6 @@
 
   <!-- Tabela de transações -->
   <div class="transactions-container">
-
     <table class="transactions-table">
       <thead>
         <tr>
@@ -74,13 +76,21 @@
           </td>
         </tr>
       </tbody>
-
-      <tfoot>
-        <tr>
-          <td colspan="8"><strong>Total</strong></td>
-          <td><strong>R$ {{ getTotalAmount() | number:'1.2-2' }}</strong></td>
-        </tr>
-      </tfoot>
     </table>
+
+    <!-- Linha de total -->
+    <table class="total-table">
+      <tr>
+        <td colspan="10"><strong>Total:</strong></td>
+        <td><strong>R$ {{ getTotalAmount() | number:'1.2-2' }}</strong></td>
+      </tr>
+    </table>
+    
+    <!-- Controles de paginação -->
+    <div class="pagination-container">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Próxima</button>
+    </div>
   </div>
 </div>
