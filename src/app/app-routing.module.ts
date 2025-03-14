@@ -19,6 +19,7 @@ import { AuthService } from './components/services/auth.service';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { TestgridComponent } from './components/testgrid/testgrid.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: AuthLayoutComponent,  // Usando layout sem sidebar para login
+    component: AuthLayoutComponent, 
     children: [
       { path: '', component: LoginComponent },
     ]
@@ -41,13 +42,15 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: MainLayoutComponent,  // Usando layout com sidebar para as rotas protegidas
+    component: MainLayoutComponent, 
     children: [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'register-transaction', component: RegisterTransactionComponent , canActivate: [AuthGuard] },
       { path: 'transaction-list', component: TransactionListComponent , canActivate: [AuthGuard] },
       { path: 'category', component: CategoryManagementComponent, canActivate: [AuthGuard] },
-      { path: 'report', component: StatisticsReportComponent, canActivate: [AuthGuard] },
+//      { path: 'report', component: StatisticsReportComponent, canActivate: [AuthGuard] },
+      { path: 'report', component: TestgridComponent, canActivate: [AuthGuard] },
+
       { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuard] }
     ]
   },

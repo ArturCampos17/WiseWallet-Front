@@ -11,7 +11,6 @@ export class SidebarComponent {
   title = 'meu-projeto';
   isMenuActive = false;
 
-  // Adicione o construtor com a injeção de dependência
   constructor(
     private authService: AuthService,
     private router: Router

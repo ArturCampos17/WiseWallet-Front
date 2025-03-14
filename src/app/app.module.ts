@@ -10,6 +10,8 @@ import { NbThemeModule, NbLayoutModule, NbCardModule, NbListModule, NbInputModul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbToastrModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -28,6 +30,7 @@ import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layou
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { TestgridComponent } from './components/testgrid/testgrid.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localePt);
 
@@ -41,7 +44,6 @@ registerLocaleData(localePt);
     ServicesComponent,
     ContactComponent,
     RegisterTransactionComponent,
-    TransactionListComponent,
     CategoryManagementComponent,
     StatisticsReportComponent,
     ProfileUserComponent,
@@ -51,11 +53,10 @@ registerLocaleData(localePt);
     AuthLayoutComponent,
     MainLayoutComponent,
     RegisterUserComponent,
-    TestgridComponent
-
+    
   ],
   imports: [
-
+    MatSlideToggleModule,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
@@ -74,8 +75,11 @@ registerLocaleData(localePt);
     NbInputModule,         
     NbButtonModule,        
     NbIconModule,
-    NbAccordionModule
-    
+    NbAccordionModule,
+    TestgridComponent,
+    NgbModule,
+    NgbPaginationModule,
+    TransactionListComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },{

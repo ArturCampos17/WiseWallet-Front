@@ -29,5 +29,5 @@ export class TransactionService {
     return this.http.post(`${this.apiUrl}`, transactionData, { headers });
   }
   
-  updateTransaction(){}
+  updateTransaction(transaction: any){}
 }

@@ -1,130 +1,246 @@
-/* ====== CONTAINER PRINCIPAL PARA ALINHAMENTO ====== */
-.main-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+/* Reset global */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ====== BARRA DE FILTROS ====== */
-.filter-bar {
+html,
+body {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  padding: 20px;
-  background: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(204, 21, 21, 0.1);
-  margin-bottom: 20px;
+  height: 100%;
+  background-color: #f9f9f9;
 }
 
-/* ====== CONTAINER DOS FILTROS (Inputs e Selects) ====== */
+.main {
+  margin-left: 10%;
+  padding: 20px; 
+  width: 100%; 
+  box-sizing: border-box; 
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+/* Filtros */
+.filter-bar {
+  margin: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nb-accordion-item-header {
+  background-color: #3f51b5;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nb-accordion-item-body {
+  padding: 16px;
+}
+
 .filter-input-container {
   display: flex;
+  gap: 16px;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 12px;
 }
 
-/* ====== ESTILO DOS FILTROS ====== */
-.filter-bar input,
-.filter-bar select {
-  flex: 1 1 220px;
-  min-width: 220px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  background: #fff;
-  transition: border-color 0.2s;
+.filter-input-container input,
+.filter-input-container select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 150px;
 }
 
-/* Efeito ao focar no input */
-.filter-bar input:focus,
-.filter-bar select:focus {
-  border-color: #2196F3;
+.filter-input-container input:focus,
+.filter-input-container select:focus {
+  border-color: #3f51b5;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+  box-shadow: 0 0 4px rgba(63, 81, 181, 0.5);
 }
 
-/* ====== ACCORDION (Filtros) ====== */
-nb-accordion {
-  width: 100%;
-}
-nb-accordion-item {
-  background: transparent;
-  border: none;
-}
-
-/* Ajuste no cabeçalho do accordion */
-::ng-deep nb-accordion-item-header {
-  padding: 14px;
-  background-color: #e0e0e0 !important;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-/* Esconde a seta padrão do Nebular */
-::ng-deep nb-accordion-item-header button::after {
-  display: none !important;
-}
-
-/* Ícone de seta personalizado e menor */
-::ng-deep nb-icon.expansion-indicator {
-  width: 16px !important;
-  height: 16px !important;
-  font-size: 14px !important;
-}
-
-/* ====== TABELA ====== */
+/* Tabela de transações */
 .transactions-container {
+  margin: 20px;
   width: 100%;
-  overflow-x: auto;
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; 
+  max-width: 100%;
 }
 
-.transactions-table {
+table.table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+  margin: 0 auto;
 }
 
-.transactions-table th,
-.transactions-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
-}
-
-.transactions-table th {
-  background-color: #f5f5f5;
+thead th {
+  background-color: #3f51b5;
+  color: white;
   font-weight: bold;
+  text-align: left;
+  padding: 12px;
 }
 
-/* Ajuste colunas */
-.transactions-table td {
+tbody td {
   white-space: nowrap;
+  border-bottom: 1px solid #ddd;
 }
 
-/* ====== ESTILOS PARA VALORES POSITIVOS E NEGATIVOS ====== */
-.amount.positive {
+tbody tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+tbody tr:hover {
+  background-color: #e3e3e3;
+  cursor: pointer;
+}
+
+td.positive {
   color: green;
   font-weight: bold;
 }
 
-.amount.negative {
+td.negative {
   color: red;
   font-weight: bold;
 }
+
+.total-table {
+  width: 100%;
+  margin-top: 20px;
+  border-top: 2px solid #3f51b5;
+}
+
+.total-table td {
+  padding: 12px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.total-table td:first-child {
+  text-align: left;
+}
+
+.total-table tr:nth-child(1) td:last-child {
+  color: green; /* Destaca o total geral */
+}
+
+.total-table tr:nth-child(2) td:last-child {
+  color: blue; /* Destaca o total da página */
+}
+
+/* Container da paginação */
+.pagination-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  margin: 20px;
+}
+/* Container da paginação */
+.pagination-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo da paginação */
+ngb-pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+ngb-pagination .page-item {
+  margin: 0;
+}
+
+ngb-pagination .page-link {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #3f51b5;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+ngb-pagination .page-link:hover {
+  background-color: #e3e3e3;
+}
+
+ngb-pagination .page-item.active .page-link {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+  color: white;
+}
+
+ngb-pagination .page-item.disabled .page-link {
+  background-color: #f5f5f5;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Botões de navegação */
+ngb-pagination .page-item:first-child .page-link,
+ngb-pagination .page-item:last-child .page-link {
+  padding: 8px 16px;
+}
+
+/* Estilo do select */
+.form-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #3f51b5;
+  font-weight: bold;
+  cursor: pointer;
+  width: auto;
+}
+
+.form-select:focus {
+  border-color: #3f51b5;
+  outline: none;
+  box-shadow: 0 0 4px rgba(63, 81, 181, 0.5);
+}
+
 .menu-items-container {
   display: flex;
   gap: 1rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  align-items: center;
 }
 
 .menu-items {
-  color: #4169E1;
+  color: #4169e1;
   padding: 0;
   background: transparent;
   border: none;
   display: flex;
   align-items: center;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -140,80 +256,4 @@ nb-accordion-item {
 
 .menu-items.active svg {
   fill: #ffffff;
-}
-
-/* Estilo para o contêiner do total */
-.total-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-.total-table td {
-  text-align: left; 
-  padding: 0.5rem; 
-  border: none; 
-}
-
-.total-table td:last-child {
-  text-align: left; 
-}
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.pagination-container button {
-  margin: 0 0.5rem;
-}
-
-/* ====== RESPONSIVIDADE ====== */
-@media (max-width: 768px) {
-  .main-container {
-    width: 95%;
-  }
-
-  .filter-bar {
-    flex-direction: column;
-  }
-
-  .filter-input-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .filter-bar input,
-  .filter-bar select {
-    flex-basis: 100%;
-    min-width: 100%;
-  }
-
-  ::ng-deep nb-accordion-item-header {
-    font-size: 14px;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .filter-bar {
-    padding: 15px;
-  }
-
-  .filter-bar input,
-  .filter-bar select {
-    padding: 8px;
-    font-size: 12px;
-  }
-
-  .transactions-table th,
-  .transactions-table td {
-    padding: 8px;
-    font-size: 12px;
-  }
-
-  .transactions-table {
-    min-width: 400px; 
-  }
 }

@@ -1,0 +1,51 @@
+/* Reset global */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Configurações globais */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Impede rolagem horizontal indesejada */
+}
+
+/* Estilo do container principal */
+.component-fade-in {
+  width: 100%; /* Garante que o componente ocupe toda a largura disponível */
+  padding: 2rem; /* Espaçamento interno */
+  box-sizing: border-box; /* Inclui o padding na largura total */
+  background-color: #ffffff; /* Fundo branco */
+  margin-left: 280px; /* Mesmo valor da largura da sidebar */
+  min-height: 100vh; /* Garante que o componente tenha altura mínima da tela */
+}
+
+/* Ajuste para telas pequenas (quando a sidebar é ocultada) */
+@media (max-width: 768px) {
+  .component-fade-in {
+    margin-left: 0; /* Remove a margem esquerda */
+  }
+}
+
+/* Estilo do título */
+.component-fade-in h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: left; /* Alinha o texto à esquerda */
+  margin-bottom: 1rem; /* Espaçamento abaixo do título */
+}
+
+/* Estilo do divisor */
+.divider {
+  width: 100%; /* Ocupa toda a largura disponível */
+  height: 2px; /* Altura do divisor */
+  background-color: #ddd; /* Cor do divisor */
+  margin-top: 1rem; /* Espaçamento acima do divisor */
+}
