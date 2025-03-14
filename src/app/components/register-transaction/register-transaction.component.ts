@@ -10,7 +10,7 @@ import { TransactionService } from '../services/transaction.service';
 export class RegisterTransactionComponent implements OnInit {
   transactionForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private transactionService: TransactionService) {} // Injetando o serviço
+  constructor(private fb: FormBuilder, private transactionService: TransactionService) {} 
 
 
   ngOnInit(): void {
