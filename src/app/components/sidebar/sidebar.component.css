@@ -27,7 +27,8 @@ body {
   display: flex;
   min-height: 100vh;
   background: #F8F9FA;
-  position: relative;
+  width: 100vw;
+  /* position: relative; */
 }
 .hamburger-menu {
   display: none;
@@ -100,8 +101,9 @@ body {
   }
 
   .main-content {
-    margin-left: 0;
-    padding: 2rem;
+    margin-left: 0; 
+    padding: 20px;
+    width: 100%;
   }
 
   /* Animação do ícone para X */
@@ -127,7 +129,7 @@ body {
 .sidebar {
   background: #ffffff;
   width: 280px;
-  padding: 2rem 1.5rem;
+  padding:20px;
   position: fixed;
   height: 100vh;
   border-right: 1px solid #eaeef3;
@@ -199,12 +201,11 @@ body {
 
 /* Conteúdo Principal - Mais profissional */
 .main-content {
-  flex: 1;
-  margin-left: 280px;
-  padding: 3rem;
-  min-height: 100vh;
+  flex: 1; /* Ocupa todo o espaço restante */
   background: #FFFFFF;
   position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 /* Tipografia aprimorada */

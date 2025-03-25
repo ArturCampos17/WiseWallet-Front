@@ -14,15 +14,24 @@ body {
   width: 100%;
   height: 100%;
   background-color: #f9f9f9;
+  overflow-x: hidden;
 }
 
 .main {
-  margin-left: 10%;
-  padding: 20px; 
-  width: 100%; 
-  box-sizing: border-box; 
+  margin-left: 0;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
   background-color: #ffffff;
+  overflow-x: hidden;
   min-height: 100vh;
+}
+
+@media (min-width: 992px) {
+  .main {
+    margin-left: 300px;
+    padding: 80px;
+  }
 }
 
 /* Filtros */
@@ -62,11 +71,16 @@ body {
   min-width: 150px;
 }
 
-.filter-input-container input:focus,
-.filter-input-container select:focus {
-  border-color: #3f51b5;
-  outline: none;
-  box-shadow: 0 0 4px rgba(63, 81, 181, 0.5);
+@media (max-width: 768px) {
+  .filter-input-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-input-container input,
+  .filter-input-container select {
+    min-width: 100%;
+  }
 }
 
 /* Tabela de transações */
@@ -77,19 +91,26 @@ body {
   border-radius: 8px;
   background: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  overflow-x: auto; 
+  overflow-x: auto;
   max-width: 100%;
 }
 
 table.table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0 auto;
+  min-width: 600px;
+
 }
 
+table.table td,
+table.table th {
+  white-space: nowrap; /* Impede quebra de linha */
+  overflow: hidden; /* Oculta o conteúdo que ultrapassa os limites */
+  text-overflow: ellipsis; /* Adiciona reticências (...) para conteúdo truncado */
+}
 thead th {
   background-color: #3f51b5;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   text-align: left;
   padding: 12px;
@@ -97,7 +118,19 @@ thead th {
 
 tbody td {
   white-space: nowrap;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ffffff;
+}
+
+@media (max-width: 768px) {
+  thead th,
+  tbody td {
+    white-space: normal;
+    padding: 10px;
+  }
+
+  table.table {
+    font-size: 10px;
+  }
 }
 
 tbody tr:nth-child(even) {
@@ -109,12 +142,12 @@ tbody tr:hover {
   cursor: pointer;
 }
 
-td.positive {
+.positive {
   color: green;
   font-weight: bold;
 }
 
-td.negative {
+.negative {
   color: red;
   font-weight: bold;
 }
@@ -136,21 +169,13 @@ td.negative {
 }
 
 .total-table tr:nth-child(1) td:last-child {
-  color: green; /* Destaca o total geral */
+  color: green;
 }
 
 .total-table tr:nth-child(2) td:last-child {
-  color: blue; /* Destaca o total da página */
+  color: blue;
 }
 
-/* Container da paginação */
-.pagination-container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 12px;
-  margin: 20px;
-}
 /* Container da paginação */
 .pagination-container {
   background-color: #fff;
@@ -163,7 +188,6 @@ td.negative {
   align-items: center;
 }
 
-/* Estilo da paginação */
 ngb-pagination {
   display: flex;
   gap: 8px;
@@ -201,34 +225,8 @@ ngb-pagination .page-item.disabled .page-link {
   cursor: not-allowed;
 }
 
-/* Botões de navegação */
-ngb-pagination .page-item:first-child .page-link,
-ngb-pagination .page-item:last-child .page-link {
-  padding: 8px 16px;
-}
-
-/* Estilo do select */
-.form-select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #3f51b5;
-  font-weight: bold;
-  cursor: pointer;
-  width: auto;
-}
-
-.form-select:focus {
-  border-color: #3f51b5;
-  outline: none;
-  box-shadow: 0 0 4px rgba(63, 81, 181, 0.5);
-}
-
 .menu-items-container {
   display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap;
   gap: 1rem;
   align-items: center;
 }
@@ -244,16 +242,50 @@ ngb-pagination .page-item:last-child .page-link {
   cursor: pointer;
 }
 
-.menu-items svg {
-  fill: currentColor;
-  width: 24px;
-  height: 24px;
+
+/* Estilo específico para a coluna de ações */
+td.menu-items-container {
+  display: flex;
+  align-items: center; 
+  gap: 8px; 
+  justify-content: flex-start; 
+  white-space: nowrap; 
+  padding: 8px; 
 }
 
+.menu-items {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center; 
+}
+
+.menu-items svg {
+  fill: currentColor; 
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease; 
+}
 .menu-items:hover svg {
-  transform: scale(1.1);
+  transform: scale(1.1); 
 }
 
 .menu-items.active svg {
-  fill: #ffffff;
+  fill: #ffffff; /* Altera a cor do ícone quando ativo */
+}
+
+
+@media (max-width: 768px) {
+  td.menu-items-container {
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center; 
+  }
+
+  .menu-items svg {
+    width: 20px; 
+    height: 20px;
+  }
 }

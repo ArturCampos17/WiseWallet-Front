@@ -12,6 +12,7 @@ import { NbToastrModule } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartsModule } from 'ng2-charts';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
@@ -29,7 +30,6 @@ import { CepPipe } from './components/shared/pipes/cep.pipe';
 import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
-import { TestgridComponent } from './components/testgrid/testgrid.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localePt);
@@ -76,10 +76,10 @@ registerLocaleData(localePt);
     NbButtonModule,        
     NbIconModule,
     NbAccordionModule,
-    TestgridComponent,
     NgbModule,
     NgbPaginationModule,
-    TransactionListComponent
+    
+    NgChartsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },{

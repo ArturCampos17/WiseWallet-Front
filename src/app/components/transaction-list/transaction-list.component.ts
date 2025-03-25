@@ -1,22 +1,46 @@
-// transaction-list.component.ts
 import { Component, OnInit } from '@angular/core';
-import { TransactionService } from '../services/transaction.service';
-import { TransactionFilterService } from '../services/transaction-filter.service';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbTypeaheadModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { NbAccordionModule } from '@nebular/theme';
+import { NgbPaginationModule, NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap'; 
+import { NbAccordionModule } from '@nebular/theme'; // Importar o módulo de accordion
+
+import { TransactionService } from '../services/transaction.service';
+import { TransactionFilterService } from '../services/transaction-filter.service';
+
+interface Transaction {
+  id: number;
+  description: string;
+  recipient: string;
+  paymentType:String;
+  stats:String;
+  type: 'ENTRADA' | 'SAIDA';
+  amount: number;
+  code: string;
+  category: string;
+  situation: 'PAGO' | 'PENDENTE' | 'CANCELADO' | 'ATRASADO';
+  date: string;
+}
 
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.css'],
   standalone: true,
-  imports: [CommonModule, DecimalPipe, FormsModule, NgbTypeaheadModule, NgbPaginationModule, NbAccordionModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgbPaginationModule,
+    NbAccordionModule,
+    NgbTypeaheadModule, 
+    DecimalPipe
+  ]
 })
+
 export class TransactionListComponent implements OnInit {
-  transactions: any[] = [];
-  filteredTransactions: any[] = [];
+  transactions: Transaction[] = [];
+  filteredTransactions: Transaction[] = [];
+  allFilteredTransactions: Transaction[] = [];
+
   filters = {
     filterDescription: '',
     filterCategory: '',
@@ -33,7 +57,7 @@ export class TransactionListComponent implements OnInit {
   constructor(
     private transactionService: TransactionService,
     private transactionFilterService: TransactionFilterService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.loadTransactions();
@@ -41,7 +65,7 @@ export class TransactionListComponent implements OnInit {
 
   loadTransactions() {
     this.transactionService.getUserTransactions().subscribe(
-      (data) => {
+      (data: Transaction[]) => {
         this.transactions = data;
         this.applyFilters();
       },
@@ -52,14 +76,29 @@ export class TransactionListComponent implements OnInit {
   }
 
   applyFilters() {
-    const filtered = this.transactionFilterService.filterTransactions(this.transactions, this.filters);
-    this.collectionSize = filtered.length;
-    this.filteredTransactions = this.transactionFilterService.paginateTransactions(filtered, this.currentPage, this.pageSize);
+    this.allFilteredTransactions = this.transactionFilterService.filterTransactions(this.transactions, this.filters);
+    this.collectionSize = this.allFilteredTransactions.length;
+    this.filteredTransactions = this.transactionFilterService.paginateTransactions(
+      this.allFilteredTransactions,
+      this.currentPage,
+      this.pageSize
+    );
+  }
+
+  getTotalEntrada(): number {
+    return this.allFilteredTransactions
+      .filter(transaction => transaction.type === 'ENTRADA')
+      .reduce((total, transaction) => total + Math.abs(transaction.amount), 0);
+  }
+
+  getTotalSaida(): number {
+    return this.allFilteredTransactions
+      .filter(transaction => transaction.type === 'SAIDA')
+      .reduce((total, transaction) => total + Math.abs(transaction.amount), 0);
   }
 
   getTotalAmount(): number {
-    const filtered = this.transactionFilterService.filterTransactions(this.transactions, this.filters);
-    return this.transactionFilterService.getTotalAmount(filtered);
+    return this.getTotalEntrada() - this.getTotalSaida();
   }
 
   getCurrentPageTotal(): number {
@@ -73,7 +112,7 @@ export class TransactionListComponent implements OnInit {
       filterSituation: '',
       filterDate: ''
     };
-    this.currentPage = this.currentPage;
+    this.currentPage = this.currentPage;;
     this.applyFilters();
   }
 
@@ -84,8 +123,6 @@ export class TransactionListComponent implements OnInit {
     }
   }
 
-  editAction() { }
-
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -93,15 +130,18 @@ export class TransactionListComponent implements OnInit {
     }
   }
 
-  get totalPages() {
-    const filtered = this.transactionFilterService.filterTransactions(this.transactions, this.filters);
-    return Math.ceil(filtered.length / this.pageSize);
+  get totalPages(): number {
+    return Math.ceil(this.allFilteredTransactions.length / this.pageSize);
   }
 
-  cancelTransaction(transaction: any) {
+  cancelTransaction(transaction: Transaction) {
     if (confirm('Tem certeza que deseja cancelar esta transação?')) {
-      transaction.stats = 'CANCELADO';
+      transaction.situation = 'CANCELADO';
       // Chamar o backend para atualizar a transação
     }
+  }
+
+  editAction(){
+
   }
 }

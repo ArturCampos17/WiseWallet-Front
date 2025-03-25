@@ -1,4 +1,4 @@
-/* Reset global */
+
 *,
 *::before,
 *::after {
@@ -7,14 +7,14 @@
   box-sizing: border-box;
 }
 
-/* Configurações globais */
+
 html,
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* Impede rolagem horizontal indesejada */
+  overflow-x: hidden; 
 }
 
 /* Estilo do container principal */
@@ -48,4 +48,10 @@ body {
   height: 2px; /* Altura do divisor */
   background-color: #ddd; /* Cor do divisor */
   margin-top: 1rem; /* Espaçamento acima do divisor */
+}
+
+.axes {
+  block-size: 12.5rem;
+  inline-size: 25rem;
+  color: #bc71c9;
 }

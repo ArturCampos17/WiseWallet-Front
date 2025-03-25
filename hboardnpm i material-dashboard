@@ -1,0 +1,161 @@
+[33mcommit 5f7843d21d9074bee2a88949882dc50de1ad9a39[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Fri Mar 14 15:50:47 2025 -0300
+
+    Salvano algumas alterações na grid
+
+[33mcommit 03bd43c5d707a2f2bff7ac671692e80d00f9cfe3[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Thu Mar 13 21:36:37 2025 -0300
+
+    Antes de atualizar a versao do angular
+
+[33mcommit 6250d2b0d3f4eb716a86199f047a0f6ba57b91b2[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Tue Mar 11 17:14:40 2025 -0300
+
+    Alteração na tela  de transação
+
+[33mcommit f65abda8b7027ecab3fcdb4497050872fabfd419[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Thu Feb 27 17:11:32 2025 -0300
+
+    Alteração na lista de transação
+
+[33mcommit a8b68c977d8140cf64b7c825e26fb450e11b723c[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 24 15:34:05 2025 -0300
+
+    Alterações na lista de transações
+
+[33mcommit 92eea7df36e60e47a4ad4d0e0ecbe7b97fddcf97[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 24 11:10:57 2025 -0300
+
+    Alterado algumas configurações de usuario
+
+[33mcommit 03a5055189d0b348d071ae0300408dab7fd23425[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Fri Feb 21 17:25:49 2025 -0300
+
+    Salvar alterações antes da atualização do Angular
+
+[33mcommit 3beec5ece0e9abb75e821d9bc098a55e9c5bd3a3[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Thu Feb 20 10:25:23 2025 -0300
+
+    Implementação Token e armazenamento
+
+[33mcommit 24e966c43d7ff571183cac93c0b06ea863385205[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 17 17:01:01 2025 -0300
+
+    Alterações nocadastro de usuario, mensagens de sucesso e erro
+
+[33mcommit f07ccc53f7df58341e7edf52d22148cf9d93cc80[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Fri Feb 14 15:41:11 2025 -0300
+
+    Alterações no perfil de usuario
+
+[33mcommit 46cfb44943161da31ee4c9421ff67be466c49df2[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Wed Feb 12 13:52:05 2025 -0300
+
+    Adicionando novo arquivo
+
+[33mcommit cd7609d098f7f602f57564e46648cf85997b6989[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 10 17:59:05 2025 -0300
+
+    Criação do registro de transação
+
+[33mcommit 68437210cbad9f2998316138365f7bb9e516a3ca[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 10 17:16:37 2025 -0300
+
+    Criação do registro de transação
+
+[33mcommit 2e100ba0d6ff4b38c8b4af535b690d8eb543ca85[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 10 16:58:28 2025 -0300
+
+    Correções na responsividade
+
+[33mcommit bb34d67c3aaf119ee14c47bd8920c01fa477ef19[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 10 14:27:28 2025 -0300
+
+    Correções na sidebar
+
+[33mcommit b80ca2967548eab3ff244092d8d4eecff8421638[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Mon Feb 10 11:45:29 2025 -0300
+
+    Criado tela de cadastro de usuario
+
+[33mcommit db6329a1603aa02076ba059c9f70c2e5c117874b[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Fri Feb 7 17:46:44 2025 -0300
+
+    Alterando pagina inicial de login
+
+[33mcommit 264e52b96953d477be06eb8ff52add47c1b3d003[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Fri Feb 7 17:09:54 2025 -0300
+
+    Transiction list
+
+[33mcommit ea1e80cb5ab9246ca913b998aa309b8dcd951fb0[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Thu Feb 6 17:50:59 2025 -0300
+
+    Transiction list
+
+[33mcommit 429f08c5badd50dc876231c7d70a8687e32747b6[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Thu Feb 6 11:49:23 2025 -0300
+
+    Subindo alterações locais
+
+[33mcommit 3665bcdb4c4712470d83be873391887a3c08b901[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Thu Feb 6 11:14:15 2025 -0300
+
+    Modulo transactions list
+
+[33mcommit f4934e5b4ba36f39d07636fe5896bb0d57c99e9c[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Thu Feb 6 11:23:05 2025 -0300
+
+    Resolvendo conflitos
+
+[33mcommit b1ff6e94404003d550dc977ac447c3486281ff67[m
+Author: Artur Campos Pereira <113628557+ArturCampos17@users.noreply.github.com>
+Date:   Sat Feb 1 02:03:19 2025 -0300
+
+    Update README.md
+
+[33mcommit 81d549e12b798e2f5b82acb62e4eaee9fe674454[m
+Author: Artur Campos Pereira <113628557+ArturCampos17@users.noreply.github.com>
+Date:   Sat Feb 1 02:02:41 2025 -0300
+
+    Update README.md
+
+[33mcommit bdf6b048e6239041d0b50803bbfec8b9b9a8c557[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Sat Feb 1 02:06:55 2025 -0300
+
+    Alteração READ ME
+
+[33mcommit 01805e3037bdb17d98c5efa21683d9a0cb797e35[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Sat Feb 1 02:01:15 2025 -0300
+
+    Alteração no register-transaction
+
+[33mcommit b4efa09ff7e483ee8c61406733eafc9819ef1bb4[m
+Author: Artur Campos Pereira <arturp282@gmail.com>
+Date:   Fri Jan 31 17:57:41 2025 -0300
+
+    Primeiro commit

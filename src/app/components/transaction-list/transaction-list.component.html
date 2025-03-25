@@ -42,7 +42,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let transaction of filteredTransactions">
-        <td>{{ transaction.id }}</td>
+        <td>{{ transaction.code }}</td>
         <td>{{ transaction.description }}</td>
         <td>{{ transaction.recipient }}</td>
         <td>{{ transaction.category }}</td>
@@ -50,9 +50,10 @@
         <td>{{ transaction.stats }}</td>
         <td>{{ transaction.type }}</td>
         <td>{{ transaction.date | date:'dd/MM/yyyy' }}</td>
-        <td [ngClass]="{ 'positive': transaction.amount > 0, 'negative': transaction.amount < 0 }">
-          {{ transaction.amount | currency:'BRL' }}
-        </td>
+        <td [ngClass]="{ 'positive': transaction.amount > 0 && transaction.type !== 'SAIDA', 
+          'negative': transaction.amount < 0 || transaction.type === 'SAIDA' }">
+{{ transaction.type === 'SAIDA' ? '-' : '' }}{{ transaction.amount | currency:'BRL' }}
+</td>
         <td  class="menu-items-container">
           <button (click)="editAction()"  class="menu-items">
             <svg xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -79,7 +80,15 @@
     <td><strong>R$ {{ getCurrentPageTotal() | number:'1.2-2' }}</strong></td>
   </tr>
   <tr>
-    <td colspan="10"><strong>Total Geral:</strong></td>
+    <td colspan="10"><strong>Total Entrada:</strong></td>
+    <td><strong>R$ {{ getTotalEntrada() | number:'1.2-2' }}</strong></td>
+  </tr>
+  <tr>
+    <td colspan="10"><strong>Total Saida:</strong></td>
+    <td><strong>R$ {{ getTotalSaida() | number:'1.2-2' }}</strong></td>
+  </tr>
+  <tr>
+    <td colspan="10"><strong>Total Liquido:</strong></td>
     <td><strong>R$ {{ getTotalAmount() | number:'1.2-2' }}</strong></td>
   </tr>
 </table>
@@ -91,7 +100,7 @@
   </ngb-pagination>
 
   <!-- Seleção de tamanho da página -->
-  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTransactions()">
+  <select class="form-select" style="width: 90px" [(ngModel)]="pageSize" (ngModelChange)="refreshTransactions()">
     <option [ngValue]="5">5 </option>
     <option [ngValue]="10">10 </option>
     <option [ngValue]="15">15 </option>
