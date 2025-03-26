@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
-import { CategoryManagementComponent } from './components/category-management/category-management.component'
+import { CategoryComponent } from './components/category/category.component';
 import { StatisticsReportComponent } from './components/statistics-report/statistics-report.component';
 import { ProfileUserComponent } from './components/profile-user/profile-user.component';
 import { LoginComponent } from './components/login/login.component';
@@ -47,7 +47,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'register-transaction', component: RegisterTransactionComponent , canActivate: [AuthGuard] },
       { path: 'transaction-list', component: TransactionListComponent , canActivate: [AuthGuard] },
-      { path: 'category', component: CategoryManagementComponent, canActivate: [AuthGuard] },
+      { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
       { path: 'report', component: StatisticsReportComponent, canActivate: [AuthGuard] },
       { path: 'profile', component: ProfileUserComponent, canActivate: [AuthGuard] }
     ]

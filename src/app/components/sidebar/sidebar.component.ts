@@ -39,7 +39,7 @@ export class SidebarComponent {
   async logout() {
     try {
       await this.authService.logout();
-      // Força um recarregamento completo da página (opcional)
+      
       window.location.reload();
     } catch (error) {
       console.error('Erro no logout:', error);

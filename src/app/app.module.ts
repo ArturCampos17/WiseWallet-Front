@@ -31,6 +31,7 @@ import { AuthLayoutComponent } from './components/layouts/auth-layout/auth-layou
 import { MainLayoutComponent } from './components/layouts/main-layout/main-layout.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryComponent } from './components/category/category.component';
 
 registerLocaleData(localePt);
 
@@ -53,6 +54,7 @@ registerLocaleData(localePt);
     AuthLayoutComponent,
     MainLayoutComponent,
     RegisterUserComponent,
+    CategoryComponent,
     
   ],
   imports: [
