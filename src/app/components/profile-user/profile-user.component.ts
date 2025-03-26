@@ -70,10 +70,8 @@ export class ProfileUserComponent implements OnInit {
       return;
     }
   
-    console.log('Enviando dados ao backend:', JSON.stringify(this.userProfile, null, 2));
     this.userService.updateUserProfile(this.userProfile).subscribe({
       next: (updatedData) => {
-        console.log('Perfil atualizado com sucesso:', updatedData);
         this.isEditing = false;
         this.originalUserData = null;
         alert('Alterações salvas com sucesso!');

@@ -17,22 +17,25 @@
     <!-- Categoria -->
     <div class="form-group">
       <label for="category">Categoria:</label>
-      <select id="category" formControlName="category">
-        <option value="" disabled selected>Selecione uma categoria</option>
-        <option value="alimentacao">Alimentação</option>
-        <option value="transporte">Transporte</option>
-        <option value="lazer">Lazer</option>
-        <option value="outros">Outros</option>
+      <select id="category" formControlName="categoryId">
+        <option value="" disabled>Selecione uma categoria</option>
+        <option *ngFor="let category of category" [value]="category.id">
+          {{ category.name }}
+        </option>
       </select>
     </div>
+  
+    <div *ngIf="loading">Carregando categorias...</div>
+    <div *ngIf="error">{{ error }}</div>
+  
 
     <!-- Tipo Pagamento -->
     <div class="form-group">
       <label for="type">Tipo:</label>
       <select id="type" formControlName="type">
         <option value="" disabled selected>Selecione o tipo</option>
-        <option value="ENTRADA">Entrada</option>
-        <option value="SAIDA">Saida</option>>
+        <option value="RECEBER">Receber</option>
+        <option value="PAGAR">Pagar</option>>
       </select>
     </div>
 

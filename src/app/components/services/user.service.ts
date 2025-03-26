@@ -29,7 +29,6 @@ export class UserService {
   }
 
   loginUser(credentials: any): Observable<any> {
-    console.log('Credenciais enviadas para o login:', credentials);
     return this.http.post(`http://localhost:8080/api/auth/login`, credentials).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Erro ao fazer login:', error);

@@ -29,7 +29,6 @@ export class LoginComponent {
       return;
     }
 
-    console.log('Credenciais enviadas para o login:', this.credentials);
 
     this.authService.login(this.credentials).subscribe(
       (response: any) => {

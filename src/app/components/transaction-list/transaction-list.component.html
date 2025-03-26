@@ -50,9 +50,9 @@
         <td>{{ transaction.stats }}</td>
         <td>{{ transaction.type }}</td>
         <td>{{ transaction.date | date:'dd/MM/yyyy' }}</td>
-        <td [ngClass]="{ 'positive': transaction.amount > 0 && transaction.type !== 'SAIDA', 
-          'negative': transaction.amount < 0 || transaction.type === 'SAIDA' }">
-{{ transaction.type === 'SAIDA' ? '-' : '' }}{{ transaction.amount | currency:'BRL' }}
+        <td [ngClass]="{ 'positive': transaction.amount > 0 && transaction.type !== 'PAGAR', 
+          'negative': transaction.amount < 0 || transaction.type === 'PAGAR' }">
+{{ transaction.type === 'PAGAR' ? '-' : '' }}{{ transaction.amount | currency:'BRL' }}
 </td>
         <td  class="menu-items-container">
           <button (click)="editAction()"  class="menu-items">

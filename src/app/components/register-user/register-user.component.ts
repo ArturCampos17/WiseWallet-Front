@@ -48,7 +48,6 @@ export class RegisterUserComponent {
         next: (response) => {
           this.message = 'Cadastro realizado com sucesso!';
           this.errorMessage = '';
-          console.log('Resposta do backend:', response);
 
           this.toastrService.success('Usuário cadastrado com sucesso!', 'Sucesso', {
             position: NbGlobalPhysicalPosition.TOP_RIGHT,

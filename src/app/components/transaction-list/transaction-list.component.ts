@@ -8,14 +8,13 @@ import { TransactionService } from '../services/transaction.service';
 import { TransactionFilterService } from '../services/transaction-filter.service';
 
 interface Transaction {
-  id: number;
+  code: number;
   description: string;
   recipient: string;
   paymentType:String;
   stats:String;
-  type: 'ENTRADA' | 'SAIDA';
+  type: 'RECEBER' | 'PAGAR';
   amount: number;
-  code: string;
   category: string;
   situation: 'PAGO' | 'PENDENTE' | 'CANCELADO' | 'ATRASADO';
   date: string;
@@ -87,13 +86,13 @@ export class TransactionListComponent implements OnInit {
 
   getTotalEntrada(): number {
     return this.allFilteredTransactions
-      .filter(transaction => transaction.type === 'ENTRADA')
+      .filter(transaction => transaction.type === 'RECEBER')
       .reduce((total, transaction) => total + Math.abs(transaction.amount), 0);
   }
 
   getTotalSaida(): number {
     return this.allFilteredTransactions
-      .filter(transaction => transaction.type === 'SAIDA')
+      .filter(transaction => transaction.type === 'PAGAR')
       .reduce((total, transaction) => total + Math.abs(transaction.amount), 0);
   }
 
