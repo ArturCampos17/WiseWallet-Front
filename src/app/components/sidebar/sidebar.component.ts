@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router'; // Adicione esta importação
 import { AuthService } from '../services/auth.service'; // Adicione esta importação
+import { NbLayoutModule, NbSidebarModule } from '@nebular/theme'; // Importe NbSidebarModule
 
 @Component({
   selector: 'app-sidebar',

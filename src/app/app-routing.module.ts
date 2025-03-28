@@ -17,7 +17,6 @@ import { RegisterUserComponent } from './components/register-user/register-user.
 
 import { AuthService } from './components/services/auth.service';
 import { AboutComponent } from './components/about/about.component';
-import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 

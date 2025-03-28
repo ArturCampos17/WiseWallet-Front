@@ -16,7 +16,7 @@ import { NgChartsModule } from 'ng2-charts';
 
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
-import { ServicesComponent } from './components/services/services.component';
+
 import { ContactComponent } from './components/contact/contact.component';
 import { RegisterTransactionComponent } from './components/register-transaction/register-transaction.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
@@ -42,7 +42,6 @@ registerLocaleData(localePt);
     AppComponent,
     HomeComponent,
     AboutComponent,
-    ServicesComponent,
     ContactComponent,
     RegisterTransactionComponent,
     CategoryManagementComponent,
@@ -58,30 +57,29 @@ registerLocaleData(localePt);
     
   ],
   imports: [
-    MatSlideToggleModule,
-    ReactiveFormsModule,
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbCardModule,
+    NbListModule,
+    NbInputModule,
+    NbButtonModule,
+    NbIconModule,
+    NbAccordionModule,
     NbToastrModule.forRoot({
       duration: 3000,
       preventDuplicates: true,
-      destroyByClick: true, 
+      destroyByClick: true,
     }),
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,         
-    NbCardModule,           
-    NbListModule,          
-    NbInputModule,         
-    NbButtonModule,        
-    NbIconModule,
-    NbAccordionModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
     NgbModule,
     NgbPaginationModule,
-    
-    NgChartsModule
+    NgChartsModule,
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },{
