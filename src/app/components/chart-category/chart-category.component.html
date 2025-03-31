@@ -1,0 +1,22 @@
+
+  
+<canvas #chartCanvas  width="160" height="160"></canvas>
+
+<div>
+  <label for="period">Selecione o Período:</label>
+  <select id="period" [(ngModel)]="selectedPeriod" (change)="onPeriodChange()">
+    <option value="year">Ano</option>
+    <option value="month">Mês</option>
+    <option value="week">Semana</option>
+  </select>
+
+  <div *ngIf="selectedPeriod === 'month'">
+    <label for="month">:</label>
+    <input type="month" id="month" [(ngModel)]="selectedMonth" (change)="onMonthChange()" />
+  </div>
+
+  <div *ngIf="selectedPeriod === 'year'">
+    <label for="year">:</label>
+    <input type="number" id="year" [(ngModel)]="selectedYear" (change)="onYearChange()" min="2000" max="2100" />
+  </div>
+</div>

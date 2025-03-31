@@ -32,6 +32,8 @@ import { MainLayoutComponent } from './components/layouts/main-layout/main-layou
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryComponent } from './components/category/category.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartCategoryComponent } from './components/chart-category/chart-category.component';
 
 registerLocaleData(localePt);
 
@@ -54,6 +56,8 @@ registerLocaleData(localePt);
     MainLayoutComponent,
     RegisterUserComponent,
     CategoryComponent,
+    ChartComponent,
+    ChartCategoryComponent
     
   ],
   imports: [

@@ -1,4 +1,14 @@
 <div class="component-fade-in">
   <h1>Bem-vindo, {{ userProfile.name || 'Carregando...' }}!</h1>
   <div class="divider"></div>
+
+  <div class="chart-container">
+    <div class="chart-month">
+      <app-chart></app-chart>
+    </div>
+
+    <div class="chart-category">
+      <app-chart-category></app-chart-category>
+    </div>
+  </div>
 </div>
