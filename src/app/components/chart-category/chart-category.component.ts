@@ -26,7 +26,9 @@ export class ChartCategoryComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.loadChartData();
+    if (!this.isChartCreated) {
+      this.loadChartData();
+    }
   }
 
   onPeriodChange(): void {
@@ -53,29 +55,37 @@ export class ChartCategoryComponent implements AfterViewInit, OnDestroy {
         console.warn('Nenhuma categoria disponível.');
         return;
       }
-
+  
       const activeCategories = categories.filter((cat: any) => cat.stats === 'A');
       if (activeCategories.length === 0) {
         console.warn('Nenhuma categoria ativa disponível.');
         return;
       }
-
+  
       const filteredTransactions = this.filterTransactionsByPeriod(transactions);
-
+  
       const categoryTotals = activeCategories.map((cat: any) => {
         const total = filteredTransactions
           .filter((tx: any) => tx.categoryId === cat.id)
           .reduce((sum: number, tx: any) => sum + tx.amount, 0);
         return { name: cat.name, total };
       });
-
-      console.table(categoryTotals);
-
-      const labels = categoryTotals.map((item: any) => item.name);
-      const values = categoryTotals.map((item: any) => item.total);
-      const backgroundColors = this.generateColors(categoryTotals.length);
-
-      this.createChart(labels, values, backgroundColors, categoryTotals);
+  
+      const categoriesWithTransactions = categoryTotals.filter((item: any) => item.total > 0);
+  
+      if (categoriesWithTransactions.length === 0) {
+        console.warn('Nenhuma categoria com transações encontrada.');
+        alert('Não há transações registradas para as categorias ativas neste período.');
+        return;
+      }
+  
+      console.table(categoriesWithTransactions);
+  
+      const labels = categoriesWithTransactions.map((item: any) => item.name);
+      const values = categoriesWithTransactions.map((item: any) => item.total);
+      const backgroundColors = this.generateColors(categoriesWithTransactions.length);
+  
+      this.createChart(labels, values, backgroundColors, categoriesWithTransactions);
     }).catch(error => {
       console.error('Erro ao carregar dados:', error);
       alert('Não foi possível carregar os dados. Tente novamente mais tarde.');
@@ -133,7 +143,7 @@ export class ChartCategoryComponent implements AfterViewInit, OnDestroy {
     if (this.chartInstance) {
       this.chartInstance.destroy();
     }
-
+  
     const ctx = this.chartCanvas.nativeElement.getContext('2d');
     this.chartInstance = new Chart(ctx, {
       type: 'pie',
@@ -152,6 +162,18 @@ export class ChartCategoryComponent implements AfterViewInit, OnDestroy {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        animations: {
+          numbers: {
+            duration: 1000,
+            easing: 'easeInOutQuad'
+          },
+          radius: {
+            duration: 1500,
+            easing: 'easeOutBounce',
+            from: 0,
+            to: 10
+          }
+        },
         plugins: {
           title: {
             display: true,

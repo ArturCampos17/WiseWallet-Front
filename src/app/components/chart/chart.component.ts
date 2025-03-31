@@ -94,12 +94,11 @@ export class ChartComponent implements AfterViewInit, OnDestroy {
     });
 
     this.isChartCreated = true; 
-    console.log('Gráfico criado com sucesso.');
+
   }
 
   ngOnDestroy(): void {
     if (this.chartInstance) {
-      console.log('Destruindo gráfico ao sair.');
       this.chartInstance.destroy(); 
     }
   }
